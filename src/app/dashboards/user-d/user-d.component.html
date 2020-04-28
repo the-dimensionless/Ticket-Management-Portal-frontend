@@ -1,0 +1,27 @@
+<p>user-d works!</p>
+
+<div class="container">
+    <table class="table table-bordered table-inverse">
+        <tr>
+            <th>Ticket Id</th>
+            <th>Request Type</th>
+            <th>Status</th>
+            <th class="text-right">Date Created</th>
+        </tr>
+
+        <tr *ngFor="let ticket of user_tickets">
+            <td>
+                {{ticket.ticketId}}
+            </td>
+            <td>
+                {{ticket.requestType}}
+            </td>
+            <td>
+                {{ticket.status}}
+            </td>
+            <td class="text-right">
+                {{ticket.dateCreated}}
+            </td>
+        </tr>
+    </table>
+</div>
