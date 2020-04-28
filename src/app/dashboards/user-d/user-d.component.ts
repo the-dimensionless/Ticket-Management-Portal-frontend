@@ -8,15 +8,16 @@ import { UsersService } from '../../services/users.service';
 })
 export class UserDComponent implements OnInit {
   public user_tickets;
+  id: number;
 
-  constructor(private userService: UsersService) { }
+  constructor(private userService: UsersService) { this.id = 1; }
 
   ngOnInit(): void {
     this.getData();
   }
 
   getData() {
-    this.userService.getUserData().subscribe(
+    this.userService.getUserTicketsAll(this.id).subscribe(
       data => { this.user_tickets = data },
       err => console.error(err),
       () => console.log('user data has been loaded')
