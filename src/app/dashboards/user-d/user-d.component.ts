@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../services/users.service';
+import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
+import { Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-user-d',
@@ -13,7 +15,7 @@ export class UserDComponent implements OnInit {
   constructor(private userService: UsersService) { this.id = 1; }
 
   ngOnInit(): void {
-    this.getData();
+    // this.getData();
   }
 
   getData() {
@@ -24,4 +26,24 @@ export class UserDComponent implements OnInit {
     );
   }
 
+  barChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  barChartLabels: Label[] = ['Day1', 'Day2', 'Day3', 'Day4', 'Day5', 'Day6'];
+  barChartType: ChartType = 'bar';
+  barChartLegend = true;
+  barChartPlugins = [];
+
+  barChartData: ChartDataSets[] = [
+    { data: [45, 37, 60, 70, 46, 33], label: 'Corona Active Cases' }
+  ];
+
+  display() {
+    var x = document.getElementById("chart");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
 }

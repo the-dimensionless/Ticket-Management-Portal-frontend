@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
+import { ChartsModule } from 'ng2-charts';
 
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { UserRegFormComponent } from './user-reg-form/user-reg-form.component';
@@ -27,7 +28,8 @@ import { AdminDComponent } from './dashboards/admin-d/admin-d.component';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartsModule
   ],
   providers: [UsersService, RegionsService],
   bootstrap: [AppComponent]

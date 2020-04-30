@@ -1,36 +1,66 @@
-<p>user-d works!</p>
-<div class="container">
+<div class="sidenav"><br>
     <label>User name</label> <label id="username"></label>
     <label>User id</label> <label id="userid"></label>
 </div>
 
-<div class="container">
-    <h2>Submit a new Ticket</h2>
-</div>
+<div class="main"><br><br>
+    <h2>Welcome to User Dashboard</h2>
 
-<div class="container">
-    <h2>List of Submitted Tickets</h2>
-    <table class="table table-bordered table-inverse">
-        <tr>
-            <th>Ticket Id</th>
-            <th>Request Type</th>
-            <th>Status</th>
-            <th class="text-right">Date Created</th>
-        </tr>
+    <div class="container-sm">
+        <div class="container">
+            <div class="alert alert-warning" role="alert">
+                <h2>COVID19 Outbreak!</h2>
+                <p>Please refrain from any unnecessary travel</p>
+            </div>
+        </div>
 
-        <tr *ngFor="let ticket of user_tickets">
-            <td>
-                {{ticket.ticketId}}
-            </td>
-            <td>
-                {{ticket.requestType}}
-            </td>
-            <td>
-                {{ticket.status}}
-            </td>
-            <td class="text-right">
-                {{ticket.dateCreated}}
-            </td>
-        </tr>
-    </table>
+        <div class="container">
+            <div class="alert alert-info" role="alert">
+                <h2>Track Corona Activity</h2>
+                <label>Enter Destination Country:</label>&nbsp;
+                <input type="text" id="corona-target" placeholder="Enter Destination Country">&nbsp;
+                <button type="button" class="btn btn-info" (click)=display()>Find</button>
+            </div>
+        </div>
+
+        <div class="container-sm" id="chart">
+            <div class="chart-wrapper">
+                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                    [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType" height="120vh"
+                    width="400vw">
+                </canvas>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="container">
+        <h2>List of Submitted Tickets</h2>
+        <a href="#">
+            <h4>Submit a new Ticket</h4>
+        </a>
+        <table class="table table-bordered table-inverse">
+            <tr>
+                <th>Ticket Id</th>
+                <th>Request Type</th>
+                <th>Status</th>
+                <th class="text-right">Date Created</th>
+            </tr>
+
+            <tr *ngFor="let ticket of user_tickets">
+                <td>
+                    {{ticket.ticketId}}
+                </td>
+                <td>
+                    {{ticket.requestType}}
+                </td>
+                <td>
+                    {{ticket.status}}
+                </td>
+                <td class="text-right">
+                    {{ticket.dateCreated}}
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
