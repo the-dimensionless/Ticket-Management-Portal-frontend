@@ -26,18 +26,6 @@ export class UserRegFormComponent implements OnInit {
     document.getElementById("reviewContainer").style.display = "none";
     document.getElementById("registerButton").style.display = "block";
 
-    this.regionService.getCountries().toPromise()
-      .then(i =>
-        // this.countries = Object.keys(i)
-        Object.keys(i).forEach(j => {
-          // console.log(i[j]["name"])
-          this.countries.push({ j: i[j]["names"] })
-        })
-      );
-
-    this.countries.forEach(i => {
-      console.log(i);
-    })
     this.userForm = new FormGroup({
       fname: new FormControl('', Validators.required),
       lname: new FormControl('', Validators.required),

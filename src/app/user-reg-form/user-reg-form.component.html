@@ -32,22 +32,25 @@
         <div class="form-group">
             Enter Country:
             <select id="country" placeholder="Enter Country">
-                <div *ngFor="let item of countries">
+                <!-- <div *ngFor="let item of countries">
                     <option value="1">{{item.name}}</option>
-                </div>
+                </div> -->
+                <option value="India">India</option>
             </select>
             <br><br>
         </div>
         <div class="form-group">
             Enter State:
             <select id="state" placeholder="Enter State">
+                <option value="Delhi">Delhi</option>
             </select>
             <br><br>
         </div>
 
         <div class="form-group">
             Enter City:
-            <select id="country" placeholder="Enter City">
+            <select id="city" placeholder="Enter City">
+                <option value="New Delhi">New Delhi</option>
             </select>
             <br><br>
         </div>
@@ -59,7 +62,7 @@
 
         <!-- <button *ngIf="submitter" type="submit" id="registerButton" (click)="review()">Submit
             Details</button><br><br> -->
-        <button type="submit" id="registerButton" (click)="review()">Submit
+        <button type="submit" id="registerButton">Submit
             Details</button><br><br>
 
         <!-- <div class="reviewContainer" *ngIf="showReview">
