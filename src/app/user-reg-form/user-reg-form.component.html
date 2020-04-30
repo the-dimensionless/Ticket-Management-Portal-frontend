@@ -1,37 +1,61 @@
 <p>user-reg-form works!</p>
 
 <div class="container">
-    <form class="form">
-        Enter First Name: <input type="text" id="fname" placeholder="Enter First Name" required><br><br>
-        Enter Last Name: <input type="text" id="lname" placeholder="Enter Last Name" required><br><br>
+    <form class="form" [formGroup]="userForm" (ngSubmit)="submitUserForm()" novalidate>
+        <div *ngIf="validMessage != '' ">
+            <h3 class="has-info">{{validMessage}}</h3>
+        </div>
+        <div class="form-group">
+            Enter First Name: <input type="text" id="fname" placeholder="Enter First Name" required><br><br>
+        </div>
+        <div class="form-group">
+            Enter Last Name: <input type="text" id="lname" placeholder="Enter Last Name" required><br><br>
+        </div>
+        <div class="form-group">
+            Enter Email Id: <input type="email" id="email" placeholder="Enter Email Id" required><br><br>
+        </div>
+        <div class="form-group">
+            Enter Business Unit: <input type="text" id="bUnit" placeholder="Enter Business Unit" required><br><br>
+        </div>
+        <div class="form-group">
+            Enter Title: <input type="text" id="title" placeholder="Enter title" required><br><br>
+        </div>
+        <div class="form-group">
+            Enter Telephone: <input type="number" id="telephone" placeholder="Enter Telephone" required><br><br>
+        </div>
+        <div class="form-group">
+            Enter Address1: <input type="text" id="add1" placeholder="Enter Address1" required><br><br>
+        </div>
+        <div class="form-group">
+            Enter Address2: <input type="text" id="add2" placeholder="Enter Address2"><br><br>
+        </div>
+        <div class="form-group">
+            Enter Country:
+            <select id="country" placeholder="Enter Country">
+                <div *ngFor="let item of countries">
+                    <option value="1">{{item.name}}</option>
+                </div>
+            </select>
+            <br><br>
+        </div>
+        <div class="form-group">
+            Enter State:
+            <select id="state" placeholder="Enter State">
+            </select>
+            <br><br>
+        </div>
 
-        Enter Email Id: <input type="email" id="email" placeholder="Enter Email Id" required><br><br>
+        <div class="form-group">
+            Enter City:
+            <select id="country" placeholder="Enter City">
+            </select>
+            <br><br>
+        </div>
 
-        Enter Business Unit: <input type="text" id="bUnit" placeholder="Enter Business Unit" required><br><br>
-        Enter Title: <input type="text" id="title" placeholder="Enter title" required><br><br>
-        Enter Telephone: <input type="number" id="telephone" placeholder="Enter Telephone" required><br><br>
+        <div class="form-group">
+            Enter Zip Code: <input type="text" id="zip" placeholder="Enter Zip Code" required><br><br>
+        </div>
 
-        Enter Address1: <input type="text" id="add1" placeholder="Enter Address1" required><br><br>
-        Enter Address2: <input type="text" id="add2" placeholder="Enter Address2"><br><br>
-
-        Enter Country:
-        <select id="country" placeholder="Enter Country">
-        </select>
-
-        <br><br>
-        Enter State:
-        <select id="state" placeholder="Enter State">
-        </select>
-
-        <br><br>
-
-        Enter City:
-        <select id="country" placeholder="Enter City">
-        </select>
-
-        <br><br>
-
-        Enter Zip Code: <input type="text" id="zip" placeholder="Enter Zip Code" required><br><br>
 
         <!-- <button *ngIf="submitter" type="submit" id="registerButton" (click)="review()">Submit
             Details</button><br><br> -->
