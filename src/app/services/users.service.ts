@@ -34,7 +34,7 @@ export class UsersService {
       "username": username,
       "password": password
     }
-    return this.http.post("user/login/", body, httpOptions);
+    return this.http.post("server/user/login", body, httpOptions);
   }
 
   registerUser(userformdata) {

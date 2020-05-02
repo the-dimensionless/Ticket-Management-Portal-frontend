@@ -1,24 +1,30 @@
 <br><br>
-<div class="container col-6">
+<div class="container col-6" id="top-container">
     <h3>Login</h3>
     <div class="form-div">
         <form #form="ngForm">
             <div class="form-group">
                 <label for="username">Enter Username :</label>&nbsp;
                 <input id="username" name="username" class="form-control" placeholder="Enter Username" required
-                    #fieldOne="ngModel" ngModel>
-                <!--  <div [hidden]="fieldOne.valid || fieldOne.untouched" class="alert alert-danger col-sm">
-                    Please enter a username
-                </div> -->
-
+                    #fieldOne="ngModel" ngModel [class.field-error]="form.submitted && fieldOne.invalid">
                 <br><br>
-
+                <div [hidden]="fieldOne.valid || fieldOne.untouched" class="alert alert-danger col-sm">
+                    Please enter a username
+                </div>
+                <br>
                 <label for="secondname">Enter Password :</label>&nbsp;&nbsp;
                 <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password"
-                    required ngModel>
+                    required #fieldTwo="ngModel" ngModel [class.field-error]="form.submitted && fieldTwo.invalid">
             </div>
 
-            <button class="btn btn-primary" type="button" (click)="onSubmit(form)">Submit</button> <br>
+            <div [hidden]="fieldTwo.valid || fieldTwo.untouched" class="alert alert-danger col-sm">
+                Please enter a password
+            </div>
+
+            <div [hidden]="!postError" class="alert alert-danger">
+                {{postErrorMessage}}
+            </div>
+            <button class="btn btn-primary" type="button" (click)="onSubmit(form)">Login</button> <br>
 
             <p>Don't have a Username and Password ?</p>
 
