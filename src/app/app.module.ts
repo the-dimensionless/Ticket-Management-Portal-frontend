@@ -16,6 +16,8 @@ import { UserDComponent } from './dashboards/user-d/user-d.component';
 import { AdminDComponent } from './dashboards/admin-d/admin-d.component';
 import { AdminLoginFormComponent } from './admin-login-form/admin-login-form.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { AuthGuardService } from './auth/auth-guard.service';
+import { AuthServicesService } from './auth/auth-services.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
     ReactiveFormsModule,
     ChartsModule
   ],
-  providers: [UsersService, RegionsService],
+  providers: [UsersService, RegionsService, AuthGuardService, AuthServicesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

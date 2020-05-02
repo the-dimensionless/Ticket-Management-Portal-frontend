@@ -32,7 +32,7 @@ export class UsersService {
   loginUser(username: string, password: string) {
     let body = {
       "username": username,
-      "password": password
+      "pass": password
     }
     return this.http.post("server/user/login", body, httpOptions);
   }

@@ -16,6 +16,7 @@ export class UserDComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
+    console.log(this.user_tickets);
   }
 
   getData() {
