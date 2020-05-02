@@ -15,7 +15,7 @@ export class UserDComponent implements OnInit {
   constructor(private userService: UsersService) { this.id = 1; }
 
   ngOnInit(): void {
-    // this.getData();
+    this.getData();
   }
 
   getData() {

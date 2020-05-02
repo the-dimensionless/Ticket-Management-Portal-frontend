@@ -14,6 +14,8 @@ import { UsersService } from './services/users.service';
 import { RegionsService } from './services/regions.service';
 import { UserDComponent } from './dashboards/user-d/user-d.component';
 import { AdminDComponent } from './dashboards/admin-d/admin-d.component';
+import { AdminLoginFormComponent } from './admin-login-form/admin-login-form.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { AdminDComponent } from './dashboards/admin-d/admin-d.component';
     UserRegFormComponent,
     UserDComponent,
     AdminDComponent,
+    AdminLoginFormComponent,
+    ForgotpasswordComponent
   ],
   imports: [
     BrowserModule,
