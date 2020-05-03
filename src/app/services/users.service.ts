@@ -9,14 +9,19 @@ const httpOptions = {
 @Injectable()
 export class UsersService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    let token = sessionStorage.getItem('token');
+    httpOptions.headers.append("Authorization", "Basic " + token);
+    console.log("httpOptions are ", httpOptions.headers.getAll);
+  }
 
   getUserTicketOne(id: number) {
     return this.http.get('server/user/login');
   }
 
   getUserTicketsAll(id: number) {
-    return this.http.get('server/user/' + id);
+    console.log(this.http);
+    return this.http.get('server/user/' + id, httpOptions);
   }
 
   addUserTicket(id: number, ticket) {

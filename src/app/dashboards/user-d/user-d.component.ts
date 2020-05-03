@@ -24,8 +24,8 @@ export class UserDComponent implements OnInit {
     this.fname = userData["userName"];
     this.email = userData["emailId"];
 
-    /*  this.getData();
-     console.log(this.user_tickets); */
+    this.getData();
+    console.log(this.user_tickets);
   }
 
   getData() {

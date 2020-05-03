@@ -58,7 +58,6 @@ export class AuthServicesService {
 
   public manageSession(data: LoggedinUser) {
     sessionStorage.setItem('token', data.access_token);
-    console.log("data before going in ", data);
     sessionStorage.setItem('user', JSON.stringify(data));
   }
 
