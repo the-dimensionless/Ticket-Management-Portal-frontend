@@ -21,7 +21,7 @@
             Enter Title: <input type="text" id="title" placeholder="Enter title" required><br><br>
         </div>
         <div class="form-group">
-            Enter Telephone: <input type="number" id="telephone" placeholder="Enter Telephone" required><br><br>
+            Enter Telephone: <input type="text" id="telephone" placeholder="Enter Telephone" required><br><br>
         </div>
         <div class="form-group">
             Enter Address1: <input type="text" id="add1" placeholder="Enter Address1" required><br><br>
@@ -32,9 +32,6 @@
         <div class="form-group">
             Enter Country:
             <select id="country" placeholder="Enter Country">
-                <!-- <div *ngFor="let item of countries">
-                    <option value="1">{{item.name}}</option>
-                </div> -->
                 <option value="India">India</option>
             </select>
             <br><br>
@@ -58,18 +55,8 @@
         <div class="form-group">
             Enter Zip Code: <input type="text" id="zip" placeholder="Enter Zip Code" required><br><br>
         </div>
-
-
-        <!-- <button *ngIf="submitter" type="submit" id="registerButton" (click)="review()">Submit
-            Details</button><br><br> -->
         <button type="submit" id="registerButton">Submit
             Details</button><br><br>
-
-        <!-- <div class="reviewContainer" *ngIf="showReview">
-            <button type="button" id="printButton">Print</button>
-            <button type="button" id="EditButton">Edit</button>
-            <button type="button" id="backToLoginButton">Return to Home Page</button>
-        </div> -->
 
         <div id="reviewContainer">
             <button type="button" id="printButton">Print</button>

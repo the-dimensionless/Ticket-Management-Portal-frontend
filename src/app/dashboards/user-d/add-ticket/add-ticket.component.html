@@ -1,11 +1,12 @@
 <br><br><br>
-<p>add-ticket works!</p>
+
+<h2>Add a new Ticket Request</h2>
 
 <div class="container col-8">
     <form>
         <div class="form-select">
             <label for="select">Request Type</label>
-            <select class="form-control" id="requestType">
+            <select class="form-control" id="requestType" required>
                 <option>Travel Tickets</option>
                 <option>Hotel Stay</option>
                 <option>Visa</option>
@@ -15,7 +16,7 @@
         <br>
         <div class="form-select">
             <label for="select">Priority</label>
-            <select class="form-control" id="priority">
+            <select class="form-control" id="priority" required>
                 <option>Urgent</option>
                 <option>Immediate</option>
                 <option>Normal</option>
@@ -24,7 +25,7 @@
         <br>
         <div class="form-select">
             <label for="select">Travel Country</label>
-            <select class="form-control" id="priority">
+            <select class="form-control" id="country" required>
                 <option>India</option>
                 <option>Germany</option>
                 <option>Italy</option>
@@ -33,7 +34,7 @@
         <br>
         <div class="form-select">
             <label for="select">Travel State</label>
-            <select class="form-control" id="priority">
+            <select class="form-control" id="state" required>
                 <option>Jharkhand</option>
                 <option>Uttar Pradesh</option>
                 <option>Delhi</option>
@@ -42,7 +43,7 @@
         <br>
         <div class="form-group">
             <label for="select">Travel City</label>
-            <select class="form-control" id="priority">
+            <select class="form-control" id="city" required>
                 <option>Dhanbad</option>
                 <option>Ranchi</option>
                 <option>Jamshedpur</option>
@@ -51,35 +52,34 @@
         <br>
         <div class="form-group">
             <label for="select">Travel Start Date</label>
-            <input type="date" class="form-control" placeholder="enter start date">
+            <input type="date" class="form-control" placeholder="enter start date" required>
         </div>
         <br>
         <div class="form-group">
             <label for="select">Travel End Date</label>
-            <input type="date" class="form-control" placeholder="enter end date">
+            <input type="date" class="form-control" placeholder="enter end date" required>
         </div>
         <br>
         <div class="form-group">
             <label for="pno">Passport Number</label>
-            <input type="number" class="form-control" placeholder="enter passport number" maxlength="25">
+            <input type="number" class="form-control" placeholder="enter passport number" maxlength="25" required>
         </div>
         <br>
         <div class="form-group">
             <label for="pno">Project</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="project" rows="3" required></textarea>
         </div>
         <br>
         <div class="form-group">
             <label for="expenseBearer">Expenses Borne By</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
-                    checked>
+                <input class="form-check-input" type="radio" name="expenses" id="exampleRadios1" value="Client" checked>
                 <label class="form-check-label" for="exampleRadios1">
                     Client
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                <input class="form-check-input" type="radio" name="expenses" id="exampleRadios2" value="Nagarro">
                 <label class="form-check-label" for="exampleRadios2">
                     Nagarro
                 </label>
@@ -88,7 +88,7 @@
 
         <div class="form-group">
             <label for="pno">Travel Approver Name</label>
-            <input type="number" class="form-control" placeholder="Enter Travel Approver Name" maxlength="100">
+            <input type="text" class="form-control" placeholder="Enter Travel Approver Name" maxlength="100">
         </div>
 
         <div class="form-group">
@@ -105,12 +105,22 @@
 
         <div class="form-group">
             <label for="pno">Any Additional Details</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" maxlength="1000"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" maxlength="1000"
+                required></textarea>
         </div>
         <br>
-        <div class="container-sm">
-            <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="container-sm" *ngIf="!viewEdit">
+            <button type="submit" class="btn btn-primary" (click)="showView()">Submit</button>
         </div>
+        <br>
+        <div>
+            <div class="container-sm" *ngIf="viewEdit">
+                <button type="submit" class="btn btn-primary" (click)="printView()">Print</button>&nbsp;
+                <button type="submit" class="btn btn-primary" (click)="editView()">Edit</button>&nbsp;
+                <button type="submit" class="btn btn-primary">Go to Home Page</button>&nbsp;
+            </div>
+        </div>
+
 
     </form>
 </div>

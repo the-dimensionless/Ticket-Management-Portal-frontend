@@ -21,11 +21,6 @@ export class UserRegFormComponent implements OnInit {
   constructor(private userService: UsersService, private regionService: RegionsService) { }
 
   ngOnInit(): void {
-    // this.showReview = false;
-    // this.submitter = true;
-    document.getElementById("reviewContainer").style.display = "none";
-    document.getElementById("registerButton").style.display = "block";
-
     this.userForm = new FormGroup({
       fname: new FormControl('', Validators.required),
       lname: new FormControl('', Validators.required),
@@ -50,10 +45,21 @@ export class UserRegFormComponent implements OnInit {
 
   submitUserForm() {
 
-    if (this.userForm.valid) {
+    this.userService.registerUser(this.userForm.value).subscribe(
+      data => {
+        console.log(data);
+        this.userForm.disable();
+        return true;
+      },
+      error => {
+        return Observable.throw(error);
+      })
+
+    /* if (this.userForm.valid) {
       this.validMessage = "Your registration form has been submitted. Thank You!";
       this.userService.registerUser(this.userForm.value).subscribe(
         data => {
+          console.log(data);
           this.userForm.disable();
           return true;
         },
@@ -63,7 +69,7 @@ export class UserRegFormComponent implements OnInit {
       )
     } else {
       this.validMessage = "Please fill out the form correctly before submitting!";
-    }
+    } */
   }
 
   review(): void {
@@ -74,4 +80,6 @@ export class UserRegFormComponent implements OnInit {
 
     console.log("Now value ", this.showReview);
   }
+
+
 }

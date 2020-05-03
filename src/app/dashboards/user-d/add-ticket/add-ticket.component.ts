@@ -7,9 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddTicketComponent implements OnInit {
 
-  constructor() { }
+  viewEdit: boolean;
+
+  constructor() {
+    this.viewEdit = false;
+  }
 
   ngOnInit(): void {
   }
 
+  printView(): void {
+    window.print();
+  }
+
+  showView() {
+    this.viewEdit = true;
+  }
+
+  editView() {
+    this.viewEdit = false;
+  }
 }

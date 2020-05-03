@@ -50,7 +50,7 @@ export class UsersService {
 
   registerUser(userformdata) {
     let body = JSON.stringify(userformdata);
-    return this.http.post("users", body, httpOptions);
+    return this.http.post("server/user", body, httpOptions);
   }
 
 }
