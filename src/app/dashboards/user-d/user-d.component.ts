@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-d',
@@ -9,14 +10,22 @@ import { Label } from 'ng2-charts';
   styleUrls: ['./user-d.component.css']
 })
 export class UserDComponent implements OnInit {
-  public user_tickets;
-  id: number;
 
-  constructor(private userService: UsersService) { this.id = 1; }
+  public id: number;
+  public fname: string;
+  public email: string;
+  public user_tickets;
+
+  constructor(private userService: UsersService) { }
 
   ngOnInit(): void {
-    this.getData();
-    console.log(this.user_tickets);
+    let userData = JSON.parse(sessionStorage.getItem('user'));
+    this.id = userData["userId"];
+    this.fname = userData["userName"];
+    this.email = userData["emailId"];
+
+    /*  this.getData();
+     console.log(this.user_tickets); */
   }
 
   getData() {

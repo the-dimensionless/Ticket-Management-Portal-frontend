@@ -18,6 +18,7 @@ import { AdminLoginFormComponent } from './admin-login-form/admin-login-form.com
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { AuthServicesService } from './auth/auth-services.service';
+import { TokenInterceptor } from './services/interceptors/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -35,9 +36,11 @@ import { AuthServicesService } from './auth/auth-services.service';
     HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    ChartsModule
+    ChartsModule,
+    TokenInterceptor
   ],
-  providers: [UsersService, RegionsService, AuthGuardService, AuthServicesService],
+  providers: [UsersService, RegionsService, AuthGuardService, AuthServicesService,
+    TokenInterceptor],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

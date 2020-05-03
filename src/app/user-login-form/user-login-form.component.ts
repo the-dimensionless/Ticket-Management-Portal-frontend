@@ -28,6 +28,14 @@ export class UserLoginFormComponent implements OnInit {
     this.isformValid = form.valid;
 
     if (this.isformValid) {
+      let err = this.auth.login(form);
+      /* console.log("where ", err); */
+
+      this.postErrorMessage = err;
+      this.postError = true;
+    }
+
+    /* if (this.isformValid) {
       this.userService.loginUser(form.value.username, form.value.password).subscribe(
         result => {
           console.log("login Success ", result);
@@ -38,7 +46,7 @@ export class UserLoginFormComponent implements OnInit {
       )
     } else {
       this.postErrorMessage = "Please enter the necessary Details";
-    }
+    } */
   }
 
   onHttpError(error: any) {

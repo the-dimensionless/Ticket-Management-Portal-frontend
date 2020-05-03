@@ -14,11 +14,12 @@ export class AuthGuardService implements CanActivate {
   }
 
   checkLogin(url: string): boolean {
-    if (this.authService.isLoggedIn)
+    if (this.authService.isLoggedIn) {
       return true;
+    }
 
     this.authService.redirectUrl = url;
-    this.router.navigate[''];
+    this.router.navigate['user'];
     return false;
   }
 }
