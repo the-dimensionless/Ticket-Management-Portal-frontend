@@ -7,7 +7,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ChartsModule } from 'ng2-charts';
-/* import { HTTP_INTERCEPTORS } from '@angular/common/http'; */
+
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MyInterceptor } from './services/MyInterceptor';
 
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { UserRegFormComponent } from './user-reg-form/user-reg-form.component';
@@ -19,6 +21,7 @@ import { AdminLoginFormComponent } from './admin-login-form/admin-login-form.com
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { AuthServicesService } from './auth/auth-services.service';
+import { AddTicketComponent } from './dashboards/user-d/add-ticket/add-ticket.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { AuthServicesService } from './auth/auth-services.service';
     UserDComponent,
     AdminDComponent,
     AdminLoginFormComponent,
-    ForgotpasswordComponent
+    ForgotpasswordComponent,
+    AddTicketComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,12 @@ import { AuthServicesService } from './auth/auth-services.service';
     ReactiveFormsModule,
     ChartsModule,
   ],
-  providers: [UsersService, RegionsService, AuthGuardService, AuthServicesService],
+  providers: [UsersService, RegionsService, AuthGuardService, AuthServicesService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

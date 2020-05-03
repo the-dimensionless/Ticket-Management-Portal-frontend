@@ -5,14 +5,20 @@ import { Observable } from 'rxjs/Observable';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-
+interface Ticket {
+  ticketId: number,
+  requestType: string,
+  status: string,
+  dateCreated: string
+}
 @Injectable()
 export class UsersService {
 
+  private userToken: string;
   constructor(private http: HttpClient) {
     let token = sessionStorage.getItem('token');
-    httpOptions.headers.append("Authorization", "Basic " + token);
-    console.log("httpOptions are ", httpOptions.headers.getAll);
+    this.userToken = token;
+    /*  httpOptions.headers.append("Authorization", "Basic " + token); */
   }
 
   getUserTicketOne(id: number) {
@@ -20,8 +26,8 @@ export class UsersService {
   }
 
   getUserTicketsAll(id: number) {
-    console.log(this.http);
     return this.http.get('server/user/' + id, httpOptions);
+    /* return this.http.get('server/user/' + id, httpOptions); */
   }
 
   addUserTicket(id: number, ticket) {

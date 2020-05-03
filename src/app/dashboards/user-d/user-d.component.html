@@ -35,7 +35,7 @@
     <br>
     <div class="container">
         <h2>List of Submitted Tickets</h2>
-        <a href="#">
+        <a [routerLink]="'/user/dashboard/addTicket'">>
             <h4>Submit a new Ticket</h4>
         </a>
         <table class="table table-bordered table-inverse">
@@ -48,16 +48,16 @@
 
             <tr *ngFor="let ticket of user_tickets">
                 <td>
-                    {{ticket.ticketId}}
+                    {{ticket["id"]}}
                 </td>
                 <td>
-                    {{ticket.requestType}}
+                    {{ticket["requestTye"]}}
                 </td>
                 <td>
-                    {{ticket.status}}
+                    {{ticket["status"] || "notProvided"}}
                 </td>
                 <td class="text-right">
-                    {{ticket.dateCreated}}
+                    {{ticket["dateCreated"] || "notProvided"}}
                 </td>
             </tr>
         </table>

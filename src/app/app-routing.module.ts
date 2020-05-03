@@ -9,6 +9,7 @@ import { UserDComponent } from './dashboards/user-d/user-d.component';
 
 import { AuthGuardService } from './auth/auth-guard.service';
 import { AdminDComponent } from './dashboards/admin-d/admin-d.component';
+import { AddTicketComponent } from './dashboards/user-d/add-ticket/add-ticket.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/user', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'user', component: UserLoginFormComponent },
   { path: 'user/registration', component: UserRegFormComponent },
   { path: 'user/dashboard', component: UserDComponent, canActivate: [AuthGuardService] },
+  { path: 'user/dashboard/addTicket', component: AddTicketComponent, canActivate: [AuthGuardService] },
   { path: 'user/fp', component: ForgotpasswordComponent },
 
   { path: 'admin', component: AdminLoginFormComponent },

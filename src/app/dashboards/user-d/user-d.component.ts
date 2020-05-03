@@ -4,17 +4,26 @@ import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { Router } from '@angular/router';
 
+interface Ticket {
+  id: number;
+  dateCreated: string;
+  status: string;
+  requestType: string;
+}
+
 @Component({
   selector: 'app-user-d',
   templateUrl: './user-d.component.html',
   styleUrls: ['./user-d.component.css']
 })
+
 export class UserDComponent implements OnInit {
 
   public id: number;
   public fname: string;
   public email: string;
-  public user_tickets;
+  /* public user_tickets: Ticket; */
+  public user_tickets = [];
 
   constructor(private userService: UsersService) { }
 
@@ -25,15 +34,27 @@ export class UserDComponent implements OnInit {
     this.email = userData["emailId"];
 
     this.getData();
-    console.log(this.user_tickets);
   }
 
   getData() {
-    this.userService.getUserTicketsAll(this.id).subscribe(
-      data => { this.user_tickets = data },
+
+    this.userService.getUserTicketsAll(this.id).toPromise().then(
+      data => {
+        console.log(data);
+        for (let key in data)
+          if (data.hasOwnProperty(key))
+            this.user_tickets.push(data[key]);
+      }
+    );
+
+    /* this.userService.getUserTicketsAll(this.id).subscribe(
+      data => {
+        this.user_tickets = data;
+        console.log("data from server");
+      },
       err => console.error(err),
       () => console.log('user data has been loaded')
-    );
+    ); */
   }
 
   barChartOptions: ChartOptions = {
