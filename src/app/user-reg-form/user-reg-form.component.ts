@@ -13,26 +13,28 @@ import { RegionsService } from '../services/regions.service';
 export class UserRegFormComponent implements OnInit {
   userForm: FormGroup;
   validMessage: string;
+  editable: boolean;
+  values: any;
 
   public showReview: boolean;
   public submitter: boolean;
   countries: Array<any> = [];
 
-  constructor(private userService: UsersService, private regionService: RegionsService) { }
+  constructor(private userService: UsersService, private regionService: RegionsService) { this.editable = false; }
 
   ngOnInit(): void {
     this.userForm = new FormGroup({
-      fname: new FormControl('', Validators.required),
-      lname: new FormControl('', Validators.required),
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
 
       email: new FormControl('', Validators.required),
 
-      bUnit: new FormControl('', Validators.required),
+      businessUnit: new FormControl('', Validators.required),
       title: new FormControl('', Validators.required),
       telephone: new FormControl('', Validators.required),
 
-      add1: new FormControl('', Validators.required),
-      add2: new FormControl(),
+      address1: new FormControl('', Validators.required),
+      address2: new FormControl(),
 
       country: new FormControl('', Validators.required),
       state: new FormControl('', Validators.required),
@@ -40,46 +42,51 @@ export class UserRegFormComponent implements OnInit {
 
       zip: new FormControl('', Validators.required),
     });
-
   }
 
-  submitUserForm() {
-
-    this.userService.registerUser(this.userForm.value).subscribe(
-      data => {
-        console.log(data);
-        this.userForm.disable();
-        return true;
-      },
-      error => {
-        return Observable.throw(error);
-      })
-
-    /* if (this.userForm.valid) {
-      this.validMessage = "Your registration form has been submitted. Thank You!";
-      this.userService.registerUser(this.userForm.value).subscribe(
+  submitUserForm(FormValues) {
+    if (this.userForm.valid) {
+      let body = {
+        "username": FormValues.email,
+        "firstName": FormValues.firstName,
+        "lastName": FormValues.lastName,
+        "email": FormValues.email,
+        "businessUnit": FormValues.businessUnit,
+        "title": FormValues.title,
+        "telephone": FormValues.telephone,
+        "address1": FormValues.address1,
+        "address2": FormValues.address2,
+        "country": FormValues.country,
+        "state": FormValues.state,
+        "city": FormValues.city,
+        "zip": FormValues.zip
+      };
+      this.userService.registerUser(body).subscribe(
         data => {
-          console.log(data);
-          this.userForm.disable();
+          this.onSuccess(FormValues);
           return true;
         },
         error => {
+          this.validMessage = "Uh-oh.... It seems there is some error";
           return Observable.throw(error);
-        }
-      )
+        })
     } else {
-      this.validMessage = "Please fill out the form correctly before submitting!";
-    } */
+      this.validMessage = "Please enter the details correctly!"
+    }
+
   }
 
-  review(): void {
-    // this.showReview = true;
-    // this.submitter = false;
-    document.getElementById("registerButton").style.display = "none";
-    document.getElementById("reviewContainer").style.display = "block";
-
-    console.log("Now value ", this.showReview);
+  onSuccess(FormValues) {
+    this.values = FormValues;
+    this.editable = true;
+    this.validMessage = "You have been registered successfully";
   }
 
+  basic() {
+    this.editable = false;
+  }
 
+  print() {
+    window.print();
+  }
 }

@@ -1,44 +1,52 @@
 <p>user-reg-form works!</p>
 <br><br>
-<div class="container">
-    <form class="form" [formGroup]="userForm" (ngSubmit)="submitUserForm()" novalidate>
+<div class="container" *ngIf="!editable">
+    <form class="form" [formGroup]="userForm" (ngSubmit)="submitUserForm(userForm.value)" novalidate>
         <div *ngIf="validMessage != '' ">
             <h3 class="has-info">{{validMessage}}</h3>
         </div>
         <div class="form-group">
-            Enter First Name: <input type="text" id="fname" placeholder="Enter First Name" required><br><br>
+            Enter First Name: <input formControlName="firstName" type="text" id="fname" placeholder="Enter First Name"
+                required><br><br>
         </div>
         <div class="form-group">
-            Enter Last Name: <input type="text" id="lname" placeholder="Enter Last Name" required><br><br>
+            Enter Last Name: <input formControlName="lastName" type="text" id="lname" placeholder="Enter Last Name"
+                required><br><br>
         </div>
         <div class="form-group">
-            Enter Email Id: <input type="email" id="email" placeholder="Enter Email Id" required><br><br>
+            Enter Email Id: <input formControlName="email" type="email" id="email" placeholder="Enter Email Id"
+                required><br><br>
         </div>
         <div class="form-group">
-            Enter Business Unit: <input type="text" id="bUnit" placeholder="Enter Business Unit" required><br><br>
+            Enter Business Unit: <input formControlName="businessUnit" type="text" id="bUnit"
+                placeholder="Enter Business Unit" required><br><br>
         </div>
         <div class="form-group">
-            Enter Title: <input type="text" id="title" placeholder="Enter title" required><br><br>
+            Enter Title: <input formControlName="title" type="text" id="title" placeholder="Enter title"
+                required><br><br>
         </div>
         <div class="form-group">
-            Enter Telephone: <input type="text" id="telephone" placeholder="Enter Telephone" required><br><br>
+            Enter Telephone: <input formControlName="telephone" type="text" id="telephone" placeholder="Enter Telephone"
+                required><br><br>
         </div>
         <div class="form-group">
-            Enter Address1: <input type="text" id="add1" placeholder="Enter Address1" required><br><br>
+            Enter Address1: <input formControlName="address1" type="text" id="add1" placeholder="Enter Address1"
+                required><br><br>
         </div>
         <div class="form-group">
-            Enter Address2: <input type="text" id="add2" placeholder="Enter Address2"><br><br>
+            Enter Address2: <input formControlName="address2" type="text" id="add2"
+                placeholder="Enter Address2"><br><br>
         </div>
         <div class="form-group">
             Enter Country:
-            <select id="country" placeholder="Enter Country">
+            <select id="country" placeholder="Enter Country" formControlName="country" required>
                 <option value="India">India</option>
             </select>
             <br><br>
         </div>
         <div class="form-group">
             Enter State:
-            <select id="state" placeholder="Enter State">
+            <select id="state" placeholder="Enter State" formControlName="state" required>
                 <option value="Delhi">Delhi</option>
             </select>
             <br><br>
@@ -46,23 +54,47 @@
 
         <div class="form-group">
             Enter City:
-            <select id="city" placeholder="Enter City">
+            <select id="city" placeholder="Enter City" formControlName="city" required>
                 <option value="New Delhi">New Delhi</option>
             </select>
             <br><br>
         </div>
 
         <div class="form-group">
-            Enter Zip Code: <input type="text" id="zip" placeholder="Enter Zip Code" required><br><br>
+            Enter Zip Code: <input formControlName="zip" type="text" id="zip" placeholder="Enter Zip Code"
+                required><br><br>
         </div>
-        <button type="submit" id="registerButton">Submit
+        <button type="submit" class="btn btn-primary" id="registerButton">Submit
             Details</button><br><br>
+    </form>
+</div>
 
-        <div id="reviewContainer">
-            <button type="button" id="printButton">Print</button>
-            <button type="button" id="EditButton">Edit</button>
-            <button type="button" id="backToLoginButton">Return to Home Page</button>
+<div class="container" *ngIf="editable">
+    <h3>REGISTRATION CONFIRMATION</h3>
+    <hr>
+    <h5>Thank You for registering. The admin team will contact you shortly with your username and password!</h5>
+    <hr>
+
+    <div class="submissionDetails">
+        <label>Name</label>&nbsp;:&nbsp;<label>{{values.firstName}}&nbsp;{{values.lastName}}</label><br>
+        <label>Business Unit</label>&nbsp;:&nbsp;<label>{{values.businessUnit}}</label> <br>
+        <label>Title</label>&nbsp;:&nbsp;<label>{{values.title}}</label><br>
+        <label>E-mail</label>&nbsp;:&nbsp;<label>{{values.email}}</label><br>
+        <label>Telephone</label>&nbsp;:&nbsp;<label>{{values.telephone}}</label><br>
+        <label>Address 1</label>&nbsp;:&nbsp;<label>{{values.address1}}</label><br>
+        <label>Address 2</label>&nbsp;:&nbsp;<label></label>{{values.address2}}<br>
+        <label>City</label>&nbsp;:&nbsp;<label>{{values.city}}</label><br>
+        <label>State</label>&nbsp;:&nbsp;<label>{{values.state}}</label><br>
+        <label>Zip</label>&nbsp;:&nbsp;<label>{{values.zip}}</label><br>
+        <label>Country</label>&nbsp;:&nbsp;<label>{{values.country}}</label><br>
+
+        <div class="buttons">
+            <button type="button" class="btn btn-info" (click)="print()">Print</button>&nbsp;
+            <button type="button" class="btn btn-info" (click)="basic()">Edit</button>&nbsp;
+            <button type="button" class="btn btn-info" [routerLink]="['user']">Return to Home Page</button>
         </div>
 
-    </form>
+
+
+    </div>
 </div>

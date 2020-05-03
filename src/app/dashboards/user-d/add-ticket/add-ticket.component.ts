@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/services/users.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-ticket',
@@ -9,7 +11,7 @@ export class AddTicketComponent implements OnInit {
 
   viewEdit: boolean;
 
-  constructor() {
+  constructor(private userService: UsersService) {
     this.viewEdit = false;
   }
 
@@ -20,7 +22,8 @@ export class AddTicketComponent implements OnInit {
     window.print();
   }
 
-  showView() {
+  showView(form: NgForm) {
+    this.userService.addUserTicket(1, form);
     this.viewEdit = true;
   }
 

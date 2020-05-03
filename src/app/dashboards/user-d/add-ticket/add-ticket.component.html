@@ -3,7 +3,7 @@
 <h2>Add a new Ticket Request</h2>
 
 <div class="container col-8">
-    <form>
+    <form #form="ngForm">
         <div class="form-select">
             <label for="select">Request Type</label>
             <select class="form-control" id="requestType" required>
@@ -109,18 +109,16 @@
                 required></textarea>
         </div>
         <br>
-        <div class="container-sm" *ngIf="!viewEdit">
-            <button type="submit" class="btn btn-primary" (click)="showView()">Submit</button>
-        </div>
-        <br>
-        <div>
-            <div class="container-sm" *ngIf="viewEdit">
-                <button type="submit" class="btn btn-primary" (click)="printView()">Print</button>&nbsp;
-                <button type="submit" class="btn btn-primary" (click)="editView()">Edit</button>&nbsp;
-                <button type="submit" class="btn btn-primary">Go to Home Page</button>&nbsp;
-            </div>
-        </div>
-
-
     </form>
+    <div class="container-sm" *ngIf="!viewEdit">
+        <button type="submit" class="btn btn-primary" (click)="showView(form)">Submit</button>
+    </div>
+    <br>
+    <div>
+        <div class="container-sm" *ngIf="viewEdit">
+            <button type="submit" class="btn btn-primary" (click)="printView()">Print</button>&nbsp;
+            <button type="submit" class="btn btn-primary" (click)="editView()">Edit</button>&nbsp;
+            <button type="submit" class="btn btn-primary">Go to Home Page</button>&nbsp;
+        </div>
+    </div>
 </div>
