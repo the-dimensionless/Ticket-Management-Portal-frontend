@@ -35,7 +35,7 @@
     <br>
     <div class="container">
         <h2>List of Submitted Tickets</h2>
-        <a [routerLink]="'/user/dashboard/addTicket'">>
+        <a [routerLink]="'/user/dashboard/addTicket'">
             <h4>Submit a new Ticket</h4>
         </a>
         <table class="table table-bordered table-inverse">
@@ -46,7 +46,10 @@
                 <th class="text-right">Date Created</th>
             </tr>
 
-            <tr *ngFor="let ticket of user_tickets">
+            <tr *ngFor="let ticket of user_tickets | paginate: { id: 'listing_pagination',
+                                                                itemsPerPage: 5,
+                                                                currentPage: page,
+                                                                totalItems: totalRec}">
                 <td>
                     {{ticket["id"]}}
                 </td>
@@ -61,5 +64,14 @@
                 </td>
             </tr>
         </table>
+        <div>
+            <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event">
+            </pagination-controls>
+        </div>
+
+
+
+
+        <!--End-->
     </div>
 </div>

@@ -10,6 +10,7 @@ import { ChartsModule } from 'ng2-charts';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyInterceptor } from './services/MyInterceptor';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { UserRegFormComponent } from './user-reg-form/user-reg-form.component';
@@ -41,6 +42,7 @@ import { AddTicketComponent } from './dashboards/user-d/add-ticket/add-ticket.co
     AppRoutingModule,
     ReactiveFormsModule,
     ChartsModule,
+    NgxPaginationModule
   ],
   providers: [UsersService, RegionsService, AuthGuardService, AuthServicesService,
     {

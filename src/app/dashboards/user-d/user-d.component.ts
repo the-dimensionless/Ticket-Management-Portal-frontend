@@ -24,6 +24,8 @@ export class UserDComponent implements OnInit {
   public email: string;
   /* public user_tickets: Ticket; */
   public user_tickets = [];
+  page: number = 1;
+  totalRec: number;
 
   constructor(private userService: UsersService) { }
 
@@ -46,6 +48,7 @@ export class UserDComponent implements OnInit {
             this.user_tickets.push(data[key]);
       }
     );
+    this.totalRec = this.user_tickets.length;
 
     /* this.userService.getUserTicketsAll(this.id).subscribe(
       data => {
