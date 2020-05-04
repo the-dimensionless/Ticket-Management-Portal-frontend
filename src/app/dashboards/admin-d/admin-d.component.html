@@ -1,1 +1,19 @@
-<p>admin-d works!</p>
+<nav class="navbar navbar-light fixed-top bg-dark">
+    <div class="container">
+        <h1>Welcome to Nagarro Travel</h1>
+    </div>
+    <div>
+        <button type="button" class="btn btn-danger" (click)="logout()">Logout</button>
+    </div>
+</nav><br><br>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Admin Dashboard</h1>
+        <p class="lead">Here you can see the list of submitted tickets</p>
+    </div>
+</div>
+
+<div>
+    <ng2-smart-table [settings]="settings" [source]="data" (userRowSelect)="handle(this.$event)"></ng2-smart-table>
+</div>

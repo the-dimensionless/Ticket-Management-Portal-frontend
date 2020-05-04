@@ -22,12 +22,13 @@ export class UserDComponent implements OnInit {
   public id: number;
   public fname: string;
   public email: string;
-  /* public user_tickets: Ticket; */
+  public target: string;
   public user_tickets = [];
   page: number = 1;
   totalRec: number;
 
-  constructor(private userService: UsersService, private route: Router) { }
+  constructor(private userService: UsersService, private route: Router) {
+  }
 
   ngOnInit(): void {
     let userData = JSON.parse(sessionStorage.getItem('user'));
@@ -36,6 +37,8 @@ export class UserDComponent implements OnInit {
     this.email = userData["emailId"];
 
     this.getData();
+    var x = document.getElementById("chart");
+    x.style.display = "none";
   }
 
   getData() {
@@ -50,14 +53,6 @@ export class UserDComponent implements OnInit {
     );
     this.totalRec = this.user_tickets.length;
 
-    /* this.userService.getUserTicketsAll(this.id).subscribe(
-      data => {
-        this.user_tickets = data;
-        console.log("data from server");
-      },
-      err => console.error(err),
-      () => console.log('user data has been loaded')
-    ); */
   }
 
   barChartOptions: ChartOptions = {
@@ -73,12 +68,40 @@ export class UserDComponent implements OnInit {
   ];
 
   display() {
-    var x = document.getElementById("chart");
+
+    let country = (<HTMLInputElement>document.getElementById('corona-target')).value;
+    this.target = country;
+    let url = "https://api.covid19api.com/live/country/" + country + "/status/confirmed/date/2020-03-21T13:13:30Z"
+
+    console.log("url is", url);
+    this.userService.getCoronaData(url).subscribe(
+      data => {
+        this.onLoad(data);
+      },
+      err => {
+        console.log("error", err);
+      }
+    )
+    /* var x = document.getElementById("chart");
     if (x.style.display === "none") {
       x.style.display = "block";
     } else {
       x.style.display = "none";
-    }
+    } */
+  }
+
+  onLoad(data) {
+    let barHeights = [];
+    let labels = [];
+
+    data.forEach(element => {
+      barHeights.push(element["Active"]);
+      labels.push(element["Date"].substring(0, 10));
+    });
+    this.barChartData = [
+      { data: barHeights, label: 'Corona Active Cases in ' + this.target }
+    ]
+    this.barChartLabels = labels;
   }
 
   view(ticket) {

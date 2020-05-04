@@ -11,6 +11,7 @@ import { AuthGuardService } from './auth/auth-guard.service';
 import { AdminDComponent } from './dashboards/admin-d/admin-d.component';
 import { AddTicketComponent } from './dashboards/user-d/add-ticket/add-ticket.component';
 import { EditTicketComponent } from './dashboards/user-d/edit-ticket/edit-ticket.component';
+import { AuthAdminService } from './auth/admin/auth-admin.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/user', pathMatch: 'full' },
@@ -23,7 +24,7 @@ const routes: Routes = [
   { path: 'user/fp', component: ForgotpasswordComponent },
 
   { path: 'admin', component: AdminLoginFormComponent },
-  { path: 'admin/dashboard', component: AdminDComponent, canActivate: [AuthGuardService] }
+  { path: 'admin/dashboard', component: AdminDComponent, canActivate: [AuthAdminService] }
 ];
 
 @NgModule({

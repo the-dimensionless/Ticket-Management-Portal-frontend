@@ -11,8 +11,12 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
-  getTicketsAll() {
-    return this.http.get("server/admin/");
+  getTicketsAll(data) {
+    let body = {
+      "username": data["username"],
+      "pass": data["pass"]
+    }
+    return this.http.post("server/admin/getTickets", body);
   }
 
   getTicketOne(id: number) {
@@ -24,4 +28,11 @@ export class AdminService {
     return this.http.put("server/admin", body, httpOptions);
   }
 
+  login(form) {
+    let body = {
+      "username": form.value.username,
+      "pass": form.value.password
+    }
+    return this.http.post('server/admin', body);
+  }
 }

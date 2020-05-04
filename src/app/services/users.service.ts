@@ -55,4 +55,7 @@ export class UsersService {
     return this.http.post("server/user", body, httpOptions);
   }
 
+  getCoronaData(link: string) {
+    return this.http.get(link);
+  }
 }

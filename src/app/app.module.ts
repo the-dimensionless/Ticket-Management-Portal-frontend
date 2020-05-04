@@ -24,6 +24,10 @@ import { AuthGuardService } from './auth/auth-guard.service';
 import { AuthServicesService } from './auth/auth-services.service';
 import { AddTicketComponent } from './dashboards/user-d/add-ticket/add-ticket.component';
 import { EditTicketComponent } from './dashboards/user-d/edit-ticket/edit-ticket.component';
+import { AdminService } from './services/admin.service';
+import { AuthAdminServicesService } from './auth/admin/auth-admin-services.service';
+import { AuthAdminService } from './auth/admin/auth-admin.service';
+import { Ng2SmartTableModule, LocalDataSource } from 'ng2-smart-table';
 
 @NgModule({
   declarations: [
@@ -44,9 +48,11 @@ import { EditTicketComponent } from './dashboards/user-d/edit-ticket/edit-ticket
     AppRoutingModule,
     ReactiveFormsModule,
     ChartsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    Ng2SmartTableModule
   ],
-  providers: [UsersService, RegionsService, AuthGuardService, AuthServicesService,
+  providers: [UsersService, RegionsService, AuthGuardService, AuthServicesService, AdminService,
+    AuthAdminServicesService, AuthAdminService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MyInterceptor,

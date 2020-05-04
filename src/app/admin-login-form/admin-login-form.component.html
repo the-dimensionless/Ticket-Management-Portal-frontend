@@ -1,20 +1,36 @@
 <br>
 <br><br>
-<p>admin-login-form works!</p>
+
 
 <div class="container-sm col-6">
-    <form class="form">
-        <div class="input">
-            <label for="username">Enter Username</label>
-            <input type="text" class="form-control" id="username" required>
-        </div>
-        <div class="input">
-            <label for="password">Enter Password</label>
-            <input type="password" class="form-control" id="password" required>
-        </div>
-        <br>
-        <div class="bottom">
-            <button type="button" class="btn btn-success">Login as Admin</button>
-        </div>
-    </form>
+    <div class="med">
+        <form class="form" #form="ngForm">
+            <div class="input">
+                <label for="username">Enter Username</label>
+                <input type="text" class="form-control" id="username" name="username"
+                    [class.field-error]="form.submitted && fieldOne.invalid" #fieldOne="ngModel" ngModel required>
+            </div>
+            <br>
+            <div [hidden]="fieldOne.valid || fieldOne.untouched" class="alert alert-danger col-sm">
+                Please enter a username
+            </div>
+            <div class="input">
+                <label for="password">Enter Password</label>
+                <input type="password" class="form-control" id="password" name="password" #fieldTwo="ngModel" ngModel
+                    [class.field-error]="form.submitted && fieldTwo.invalid" required>
+            </div>
+            <br>
+            <div [hidden]="fieldTwo.valid || fieldTwo.untouched" class="alert alert-danger col-sm">
+                Please enter a password
+            </div>
+
+            <div [hidden]="!postError" class="alert alert-danger">
+                {{postErrorMessage}}
+            </div>
+            <div class="bottom">
+                <button type="button" class="btn btn-success" (click)="login(form)">Login as Admin</button>
+            </div>
+        </form>
+    </div>
+
 </div>
