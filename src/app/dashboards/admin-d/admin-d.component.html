@@ -7,13 +7,77 @@
     </div>
 </nav><br><br>
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-4">Admin Dashboard</h1>
-        <p class="lead">Here you can see the list of submitted tickets</p>
+<div [hidden]="this.viewingTickets">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h2 class="display-4">Admin Dashboard</h2>
+            <p class="lead">Here you can see the list of submitted tickets</p>
+        </div>
+    </div>
+
+    <div>
+        <ng2-smart-table [settings]="settings" [source]="data" (userRowSelect)="handle(this.$event)"></ng2-smart-table>
     </div>
 </div>
 
-<div>
-    <ng2-smart-table [settings]="settings" [source]="data" (userRowSelect)="handle(this.$event)"></ng2-smart-table>
+<div *ngIf="this.viewingTickets">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h2 class="display-4">Ticket Details</h2>
+            <p class="lead">Ticket particulars as mentioned below</p>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <h2>List Group With Badges</h2>
+        <ul class="list-group">
+            <li class="list-group-item">Ticket Status <span class="badge">{{ticket["status"]}}</span></li>
+            <li class="list-group-item">Priority <span class="badge">{{ticket["priority"]}}</span></li>
+            <li class="list-group-item">From City <span class="badge">{{ticket["fromLocation"]}}</span></li>
+            <li class="list-group-item">To City <span class="badge">{{ticket["toLocation"]}}</span></li>
+            <li class="list-group-item">Start Date <span class="badge">{{ticket["startDate"]}}</span></li>
+            <li class="list-group-item">End Date <span class="badge">{{ticket["endDate"]}}</span></li>
+            <li class="list-group-item">Expense Borne By <span class="badge">{{ticket["expenseBorneBy"]}}</span></li>
+            <li class="list-group-item">Travel Duration <span class="badge">{{ticket["durationOfTravel"]}}</span></li>
+            <li class="list-group-item">Project Name <span class="badge">{{ticket["project"]}}</span></li>
+            <li class="list-group-item">Travel Approver Name <span class="badge">{{ticket["approver"]}}</span></li>
+            <li class="list-group-item">Additional Details <span class="badge">{{ticket["additionalDetails"]}}</span>
+            </li>
+            <li class="list-group-item">Upper Bound on Amount <span class="badge">{{ticket["upperBound"]}}</span></li>
+            <li class="list-group-item">Raised By User Id <span class="badge"></span></li>
+            <li class="list-group-item">User name <span class="badge"></span></li>
+            <li class="list-group-item">Business Unit <span class="badge"></span></li>
+            <li class="list-group-item">Title <span class="badge"></span></li>
+        </ul>
+        <hr>
+        <h3>Add Comments</h3>
+        <div class="container">
+            <form [formGroup]="uploadForm" (ngSubmit)="submitComment()">
+                <div class="form-group form-control">
+                    <label>Comment:</label>&nbsp;
+                    <input type="text" name="comment" #comment required>
+                </div>
+                <div class="form-group form-control">
+                    <label>Upload a document:</label>&nbsp;
+                    <input type="file" name="file" (change)="onFileSelect($event)" #file>
+                </div>
+                <div class="form-group form-control">
+                    <label>Change status:</label>&nbsp;
+                    <select name="status" #status>
+                        <option value="submitted">Submitted</option>
+                        <option value="Resubmitted">ReSubmitted</option>
+                        <option value="In Process">In Process</option>
+                        <option value="Done">Done</option>
+                    </select>
+                </div>
+
+            </form>
+            <div class="container">
+                <button type="button" class="btn btn-info" (click)="submitComment()">Upload and Add</button>
+            </div>
+
+        </div>
+    </div>
+
+
 </div>
