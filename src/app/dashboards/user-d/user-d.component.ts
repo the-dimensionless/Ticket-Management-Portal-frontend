@@ -27,7 +27,7 @@ export class UserDComponent implements OnInit {
   page: number = 1;
   totalRec: number;
 
-  constructor(private userService: UsersService) { }
+  constructor(private userService: UsersService, private route: Router) { }
 
   ngOnInit(): void {
     let userData = JSON.parse(sessionStorage.getItem('user'));
@@ -79,5 +79,9 @@ export class UserDComponent implements OnInit {
     } else {
       x.style.display = "none";
     }
+  }
+
+  view(ticket) {
+
   }
 }

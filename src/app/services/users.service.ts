@@ -21,8 +21,8 @@ export class UsersService {
     /*  httpOptions.headers.append("Authorization", "Basic " + token); */
   }
 
-  getUserTicketOne(id: number) {
-    return this.http.get('server/user/login');
+  getUserTicketOne(uid: number, tid: number) {
+    return this.http.get('server/user/' + uid + "/" + tid);
   }
 
   getUserTicketsAll(id: number) {

@@ -23,6 +23,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { AuthGuardService } from './auth/auth-guard.service';
 import { AuthServicesService } from './auth/auth-services.service';
 import { AddTicketComponent } from './dashboards/user-d/add-ticket/add-ticket.component';
+import { EditTicketComponent } from './dashboards/user-d/edit-ticket/edit-ticket.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AddTicketComponent } from './dashboards/user-d/add-ticket/add-ticket.co
     AdminDComponent,
     AdminLoginFormComponent,
     ForgotpasswordComponent,
-    AddTicketComponent
+    AddTicketComponent,
+    EditTicketComponent
   ],
   imports: [
     BrowserModule,
