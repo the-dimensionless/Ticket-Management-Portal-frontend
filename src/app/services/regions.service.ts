@@ -10,14 +10,14 @@ export class RegionsService {
   constructor(private http: HttpClient) { }
 
   getCountries() {
-    return this.http.get("https://restcountries.eu/rest/v2/all");
+    return this.http.get('server/region/getCountryList');
   }
 
-  getStates(name: string) {
-    return this.http.get("");
+  getStates(stateId: number) {
+    return this.http.get('server/region/getStateList/' + stateId);
   }
 
-  getCities(name: string) {
-    return this.http.get("");
+  getCities(stateId: number) {
+    return this.http.get('server/region/getCityList/' + stateId);
   }
 }

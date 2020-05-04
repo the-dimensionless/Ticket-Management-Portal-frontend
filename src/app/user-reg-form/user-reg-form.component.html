@@ -40,14 +40,14 @@
         <div class="form-group">
             Enter Country:
             <select id="country" placeholder="Enter Country" formControlName="country" required>
-                <option value="India">India</option>
+                <option *ngFor="let c of country" value='{{c["name"]}}' (click)="getState(c)">{{c["name"]}}</option>
             </select>
             <br><br>
         </div>
         <div class="form-group">
             Enter State:
             <select id="state" placeholder="Enter State" formControlName="state" required>
-                <option value="Delhi">Delhi</option>
+                <option *ngFor="let c of state" value='{{c["name"]}}' (click)="getCity(c)">{{c["name"]}}</option>
             </select>
             <br><br>
         </div>
@@ -55,7 +55,7 @@
         <div class="form-group">
             Enter City:
             <select id="city" placeholder="Enter City" formControlName="city" required>
-                <option value="New Delhi">New Delhi</option>
+                <option *ngFor="let c of city" value='{{c["name"]}}'>{{c["name"]}}</option>
             </select>
             <br><br>
         </div>

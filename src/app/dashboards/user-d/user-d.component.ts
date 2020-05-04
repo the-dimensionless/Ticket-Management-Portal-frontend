@@ -51,7 +51,7 @@ export class UserDComponent implements OnInit {
 
     this.userService.getUserTicketsAll(this.id).toPromise().then(
       data => {
-        console.log(data);
+        /* console.log(data); */
         for (let key in data)
           if (data.hasOwnProperty(key))
             this.user_tickets.push(data[key]);

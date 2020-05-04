@@ -16,6 +16,10 @@ export class UserRegFormComponent implements OnInit {
   editable: boolean;
   values: any;
 
+  country: any;
+  state: any;
+  city: any;
+
   public showReview: boolean;
   public submitter: boolean;
   countries: Array<any> = [];
@@ -42,6 +46,15 @@ export class UserRegFormComponent implements OnInit {
 
       zip: new FormControl('', Validators.required),
     });
+
+    this.regionService.getCountries().subscribe(
+      data => {
+        this.country = Object.values(data);
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 
   submitUserForm(FormValues) {
@@ -88,5 +101,29 @@ export class UserRegFormComponent implements OnInit {
 
   print() {
     window.print();
+  }
+
+  getState(event) {
+    this.regionService.getStates(event["id"]).subscribe(
+      data => {
+        console.log("States loaded");
+        this.state = Object.values(data);
+      },
+      err => {
+        console.log("err", err);
+      }
+    )
+  }
+
+  getCity(event) {
+    this.regionService.getCities(event["id"]).subscribe(
+      data => {
+        console.log("Cities loaded");
+        this.city = Object.values(data);
+      },
+      err => {
+        console.log("error", err);
+      }
+    )
   }
 }
