@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 interface Ticket {
   id: number;

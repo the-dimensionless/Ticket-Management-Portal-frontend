@@ -32,12 +32,13 @@ export class UsersService {
 
   addUserTicket(id: number, ticket) {
     let body = JSON.stringify(ticket);
-    return this.http.post('user/' + id, body, httpOptions);
+    console.log("about to send on id", id);
+    return this.http.post('server/user/' + id, body, httpOptions);
   }
 
   updateUserTicket(uid: number, tid: number, ticket) {
     let body = JSON.stringify(ticket);
-    return this.http.put('users/' + uid + "/" + tid, body, httpOptions);
+    return this.http.put('server/users/' + uid + "/" + tid, body, httpOptions);
   }
 
   loginUser(username: string, password: string) {

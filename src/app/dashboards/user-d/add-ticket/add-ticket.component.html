@@ -1,12 +1,14 @@
 <br><br><br>
 
-<h2>Add a new Ticket Request</h2>
-
-<div class="container col-8">
-    <form #form="ngForm">
+<div class="container col-8" *ngIf="!confirmation">
+    <h2>Add a new Ticket Request</h2>
+    <div [hidden]="!this.valid">
+        <p>{{msg}}</p>
+    </div>
+    <form [formGroup]="ticketForm" (ngSubmit)="showView(ticketForm.value)" novalidate>
         <div class="form-select">
-            <label for="select">Request Type</label>
-            <select class="form-control" id="requestType" required>
+            <label for="Request">Request Type</label>
+            <select class="form-control" formControlName="requestType" id="requestType" required>
                 <option>Travel Tickets</option>
                 <option>Hotel Stay</option>
                 <option>Visa</option>
@@ -16,34 +18,26 @@
         <br>
         <div class="form-select">
             <label for="select">Priority</label>
-            <select class="form-control" id="priority" required>
+            <select class="form-control" formControlName="priority" id="priority" required>
                 <option>Urgent</option>
                 <option>Immediate</option>
                 <option>Normal</option>
             </select>
         </div>
         <br>
-        <div class="form-select">
-            <label for="select">Travel Country</label>
-            <select class="form-control" id="country" required>
-                <option>India</option>
-                <option>Germany</option>
-                <option>Italy</option>
-            </select>
-        </div>
         <br>
         <div class="form-select">
-            <label for="select">Travel State</label>
-            <select class="form-control" id="state" required>
-                <option>Jharkhand</option>
-                <option>Uttar Pradesh</option>
-                <option>Delhi</option>
-            </select>
-        </div>
-        <br>
-        <div class="form-group">
             <label for="select">Travel City</label>
-            <select class="form-control" id="city" required>
+            <select class="form-control" formControlName="tocity" id="city" required>
+                <option>Dhanbad</option>
+                <option>Ranchi</option>
+                <option>Jamshedpur</option>
+            </select>
+        </div>
+        <br>
+        <div class="form-select">
+            <label for="select">Travel City</label>
+            <select class="form-control" formControlName="fromcity" id="city" required>
                 <option>Dhanbad</option>
                 <option>Ranchi</option>
                 <option>Jamshedpur</option>
@@ -52,34 +46,37 @@
         <br>
         <div class="form-group">
             <label for="select">Travel Start Date</label>
-            <input type="date" class="form-control" placeholder="enter start date" required>
+            <input type="date" class="form-control" formControlName="startDate" placeholder="enter start date" required>
         </div>
         <br>
         <div class="form-group">
             <label for="select">Travel End Date</label>
-            <input type="date" class="form-control" placeholder="enter end date" required>
+            <input type="date" id="endDate" class="form-control" formControlName="endDate" placeholder="enter end date"
+                required>
         </div>
         <br>
         <div class="form-group">
             <label for="pno">Passport Number</label>
-            <input type="number" class="form-control" placeholder="enter passport number" maxlength="25" required>
+            <input type="number" class="form-control" formControlName="passport" placeholder="enter passport number"
+                maxlength="25" required>
         </div>
         <br>
         <div class="form-group">
             <label for="pno">Project</label>
-            <textarea class="form-control" id="project" rows="3" required></textarea>
+            <textarea class="form-control" id="project" formControlName="project" rows="3" required></textarea>
         </div>
         <br>
         <div class="form-group">
             <label for="expenseBearer">Expenses Borne By</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="expenses" id="exampleRadios1" value="Client" checked>
+                <input class="form-check-input" type="radio" formControlName="expense" name="expense" value="Client"
+                    checked>
                 <label class="form-check-label" for="exampleRadios1">
                     Client
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="expenses" id="exampleRadios2" value="Nagarro">
+                <input class="form-check-input" type="radio" formControlName="expense" name="expense" value="Nagarro">
                 <label class="form-check-label" for="exampleRadios2">
                     Nagarro
                 </label>
@@ -88,37 +85,79 @@
 
         <div class="form-group">
             <label for="pno">Travel Approver Name</label>
-            <input type="text" class="form-control" placeholder="Enter Travel Approver Name" maxlength="100">
+            <input type="text" formControlName="approver" class="form-control" placeholder="Enter Travel Approver Name"
+                maxlength="100">
         </div>
 
         <div class="form-group">
             <label for="pno">Expected Duration Of Travel</label>
-            <input type="text" class="form-control" placeholder="Enter travel duration" maxlength="100">
+            <input type="text" formControlName="duration" class="form-control" placeholder="Enter travel duration"
+                maxlength="100">
         </div>
         <br>
         <div class="form-group">
             <label for="pno">Upper Bound on Amount? If yes then specify...</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" maxlength="500"></textarea>
+            <textarea class="form-control" formControlName="upperBound" id="exampleFormControlTextarea1" rows="4"
+                maxlength="500"></textarea>
         </div>
 
         <br>
 
         <div class="form-group">
             <label for="pno">Any Additional Details</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" maxlength="1000"
-                required></textarea>
+            <textarea class="form-control" formControlName="additionalInformation" id="exampleFormControlTextarea1"
+                rows="5" maxlength="1000" required></textarea>
+        </div>
+        <br>
+        <div class="container-sm" *ngIf="!viewEdit">
+            <button type="submit" class="btn btn-primary">Confirm</button>
         </div>
         <br>
     </form>
-    <div class="container-sm" *ngIf="!viewEdit">
-        <button type="submit" class="btn btn-primary" (click)="showView(form)">Submit</button>
-    </div>
-    <br>
+
     <div>
         <div class="container-sm" *ngIf="viewEdit">
             <button type="submit" class="btn btn-primary" (click)="printView()">Print</button>&nbsp;
             <button type="submit" class="btn btn-primary" (click)="editView()">Edit</button>&nbsp;
             <button type="submit" class="btn btn-primary">Go to Home Page</button>&nbsp;
         </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="confirmation">
+    <div [hidden]="valid">
+        <h3>TICKET SUBMISSION CONFIRMATION</h3>
+        <hr>
+        <h5>The admin team will process your ticket shortly!</h5>
+        <hr>
+    </div>
+    <div [hidden]="!valid">
+        <p>{{msg}}</p>
+    </div>
+
+    <div class="submissionDetails">
+        <label>Request Type</label>&nbsp;:&nbsp;<label>{{values.requestType}}</label><br>
+        <label>Priority</label>&nbsp;:&nbsp;<label>{{values.priority}}</label> <br>
+        <label>Travel City</label>&nbsp;:&nbsp;<label>{{values.tocity}}</label><br>
+        <label>From Location City</label>&nbsp;:&nbsp;<label>{{values.fromcity}}</label><br>
+        <label>Travel Start Date</label>&nbsp;:&nbsp;<label>{{values.startDate}}</label><br>
+        <label>Travel End Date</label>&nbsp;:&nbsp;<label>{{values.endDate}}</label><br>
+        <label>Passport Number</label>&nbsp;:&nbsp;<label></label>{{values.passport}}<br>
+        <label>Project Name</label>&nbsp;:&nbsp;<label>{{values.project}}</label><br>
+        <label>Expense Borne By</label>&nbsp;:&nbsp;<label>{{values.expense}}</label><br>
+        <label>Travel Approver Name</label>&nbsp;:&nbsp;<label>{{values.approver}}</label><br>
+        <label>Expected Duration of Travel</label>&nbsp;:&nbsp;<label>{{values.duration}}</label><br>
+        <label>Upper Bound on Amount</label>&nbsp;:&nbsp;<label>{{values.upperBound}}</label><br>
+        <label>Addition Details</label>&nbsp;:&nbsp;<label>{{values.additionalInformation}}</label><br>
+        <br><br>
+        <div class="buttons">
+            <button type="button" class="btn btn-info" (click)="print()">Print</button>&nbsp;
+            <button type="button" class="btn btn-info" (click)="basic()">Edit</button>&nbsp;
+            <button type="button" class="btn btn-info" (click)="addTicket()">Submit Ticket</button>&nbsp;
+            <button type="button" class="btn btn-info" [routerLink]="['../']">Return to Dashboard</button>
+        </div>
+
+
+
     </div>
 </div>
