@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router'
+import { AuthServicesService } from 'src/app/auth/auth-services.service';
 
 @Component({
   selector: 'app-add-ticket',
@@ -19,7 +20,7 @@ export class AddTicketComponent implements OnInit {
   values: any;
   finallySubmitted: boolean;
 
-  constructor(private userService: UsersService, private route: ActivatedRoute) {
+  constructor(private userService: UsersService, private auth: AuthServicesService, private route: ActivatedRoute) {
     this.viewEdit = false;
     this.valid = false;
     this.confirmation = false;
@@ -85,6 +86,10 @@ export class AddTicketComponent implements OnInit {
 
   basic() {
     this.confirmation = false;
+  }
+
+  logout() {
+    this.auth.logout();
   }
 
   addTicket() {

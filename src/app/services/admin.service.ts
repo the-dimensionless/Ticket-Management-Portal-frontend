@@ -35,4 +35,9 @@ export class AdminService {
     }
     return this.http.post('server/admin', body);
   }
+
+  addData(body, id) {
+    return this.http.post("server/admin/updateTicket/" + id + "/", body);
+  }
+
 }

@@ -3,6 +3,7 @@ import { UsersService } from '../../services/users.service';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { Router, NavigationExtras } from '@angular/router';
+import { AuthServicesService } from 'src/app/auth/auth-services.service';
 
 interface Ticket {
   id: number;
@@ -27,7 +28,12 @@ export class UserDComponent implements OnInit {
   page: number = 1;
   totalRec: number;
 
-  constructor(private userService: UsersService, private route: Router) {
+  constructor(private userService: UsersService,
+    private auth: AuthServicesService, private route: Router) {
+  }
+
+  logout() {
+    this.auth.logout();
   }
 
   ngOnInit(): void {

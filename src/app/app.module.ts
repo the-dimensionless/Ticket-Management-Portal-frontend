@@ -39,7 +39,7 @@ import { Ng2SmartTableModule, LocalDataSource } from 'ng2-smart-table';
     AdminLoginFormComponent,
     ForgotpasswordComponent,
     AddTicketComponent,
-    EditTicketComponent
+    EditTicketComponent,
   ],
   imports: [
     BrowserModule,

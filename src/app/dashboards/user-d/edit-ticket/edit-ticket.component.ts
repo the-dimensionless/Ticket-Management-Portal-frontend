@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthServicesService } from 'src/app/auth/auth-services.service';
 
 @Component({
   selector: 'app-edit-ticket',
@@ -17,7 +18,7 @@ export class EditTicketComponent implements OnInit {
   msg: string;
   valid: boolean = false;
 
-  constructor(private actRoute: ActivatedRoute, private userService: UsersService) {
+  constructor(private actRoute: ActivatedRoute, private auth: AuthServicesService, private userService: UsersService) {
     this.ticket_id = this.actRoute.snapshot.params.id;
     this.user_id = JSON.parse(sessionStorage.getItem('user'))["userId"];
 
@@ -85,6 +86,10 @@ export class EditTicketComponent implements OnInit {
         err => console.log(err)
       );
     }
+  }
+
+  logout() {
+    this.auth.logout();
   }
 
 }
