@@ -52,24 +52,28 @@ export class EditTicketComponent implements OnInit {
 
   update() {
     let sampleTicket = {
-      "ticketId": document.getElementById("ticketId").textContent,
-      "processedBy": document.getElementById("processed").textContent,
+      "ticketId": (<HTMLInputElement>document.getElementById('ticketId')).value,
+      "processedBy": (<HTMLSelectElement>document.getElementById('processed')).value,
 
+      "dateCreated": (<HTMLSelectElement>document.getElementById('dateCreated')).value,
       "status": "ReSubmitted",
-      "requestType": document.getElementById('requestType').textContent,
-      "priority": document.getElementById('priority').textContent,
-      "fromLocation": document.getElementById('fromcity').innerHTML,
-      "toLocation": document.getElementById('tocity').textContent,
-      "startDate": document.getElementById('startDate').textContent,
-      "endDate": document.getElementById('endDate').textContent,
-      "passportNumber": document.getElementById('passport').textContent,
-      "expenseBorneBy": document.getElementById('expense').textContent,
-      "travelApproverName": document.getElementById('approver').textContent,
-      "durationOfTravel": document.getElementById('duration').textContent,
-      "upperBoundAmount": document.getElementById('upperBound').textContent,
-      "additionalDetails": document.getElementById('additionalInformation').textContent,
+      "requestType": (<HTMLSelectElement>document.getElementById('requestType')).value,
+      "priority": (<HTMLSelectElement>document.getElementById('priority')).value,
+      "fromLocation": (<HTMLSelectElement>document.getElementById('fromcity')).value,
+      "toLocation": (<HTMLSelectElement>document.getElementById('tocity')).value,
+      "startDate": (<HTMLInputElement>document.getElementById('startDate')).value,
+      "endDate": (<HTMLInputElement>document.getElementById('endDate')).value,
+      "passportNumber": (<HTMLSelectElement>document.getElementById('passport')).value,
+      "expenseBorneBy": (<HTMLSelectElement>document.getElementById('expense')).value,
+      "travelApproverName": (<HTMLInputElement>document.getElementById('approver')).value,
+      "durationOfTravel": (<HTMLInputElement>document.getElementById('duration')).value,
+      "upperBoundAmount": (<HTMLInputElement>document.getElementById('upperBound')).value,
+      "additionalDetails": (<HTMLInputElement>document.getElementById('additionalInformation')).value,
+      "project": (<HTMLInputElement>document.getElementById('project')).value
       /* "dateCreated": new Date().toISOString().substring(0, 10) */
     }
+
+    console.log(sampleTicket);
 
     if (!this.editable) {
       this.userService.updateUserTicket(this.user_id, this.ticket_id, sampleTicket).subscribe(

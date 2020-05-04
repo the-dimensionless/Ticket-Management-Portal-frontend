@@ -51,10 +51,10 @@
                                                                 currentPage: page,
                                                                 totalItems: totalRec}">
                 <td>
-                    <a [routerLink]="['/user/dashboard/updateTicket', ticket.id]" class="btn btn-danger">
+                    <a [routerLink]="['/user/dashboard/updateTicket', ticket.id]" class="btn btn-info">
                         {{ticket["id"]}}
                     </a>
-                    <!-- <button type="button" (click)="view(ticket)">{{ticket["id"]}}</button> -->
+
                 </td>
                 <td>
                     {{ticket["requestTye"]}}
@@ -63,7 +63,7 @@
                     {{ticket["status"] || "notProvided"}}
                 </td>
                 <td class="text-right">
-                    {{ticket["dateCreated"] || "notProvided"}}
+                    {{ticket["dateCreated"].substring(0,10) || "notProvided"}}
                 </td>
             </tr>
         </table>

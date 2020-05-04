@@ -17,11 +17,13 @@ export class AddTicketComponent implements OnInit {
   ticketForm: FormGroup;
   confirmation: boolean;
   values: any;
+  finallySubmitted: boolean;
 
   constructor(private userService: UsersService, private route: ActivatedRoute) {
     this.viewEdit = false;
     this.valid = false;
     this.confirmation = false;
+    this.finallySubmitted = true;
   }
 
   ngOnInit(): void {
@@ -100,6 +102,7 @@ export class AddTicketComponent implements OnInit {
       "travelApproverName": form.approver,
       "durationOfTravel": form.duration,
       "upperBoundAmount": form.upperBound,
+      "project": form.project,
       "additionalDetails": form.additionalInformation,
       /* "dateCreated": new Date().toISOString().substring(0, 10) */
     }
@@ -109,6 +112,7 @@ export class AddTicketComponent implements OnInit {
         console.log("success");
         this.msg = "Ticket Submitted Successfully";
         this.valid = true;
+        this.finallySubmitted = false;
       },
       err => console.log(err)
     );

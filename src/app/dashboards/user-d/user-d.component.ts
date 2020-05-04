@@ -71,12 +71,13 @@ export class UserDComponent implements OnInit {
 
     let country = (<HTMLInputElement>document.getElementById('corona-target')).value;
     this.target = country;
-    let url = "https://api.covid19api.com/live/country/" + country + "/status/confirmed/date/2020-03-21T13:13:30Z"
+    let url = "https://api.covid19api.com/live/country/" + country + "/status/confirmed/date/2020-03-21T13:13:30Z";
 
-    console.log("url is", url);
     this.userService.getCoronaData(url).subscribe(
       data => {
         this.onLoad(data);
+        var x = document.getElementById("chart");
+        x.style.display = "block";
       },
       err => {
         console.log("error", err);
@@ -93,7 +94,6 @@ export class UserDComponent implements OnInit {
   onLoad(data) {
     let barHeights = [];
     let labels = [];
-
     data.forEach(element => {
       barHeights.push(element["Active"]);
       labels.push(element["Date"].substring(0, 10));

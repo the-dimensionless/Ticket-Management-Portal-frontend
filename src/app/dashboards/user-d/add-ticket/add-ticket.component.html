@@ -3,7 +3,7 @@
 <div class="container col-8" *ngIf="!confirmation">
     <h2>Add a new Ticket Request</h2>
     <div [hidden]="!this.valid">
-        <p>{{msg}}</p>
+        <button type="button" class="btn btn-success" disabled>{{msg}}</button>
     </div>
     <form [formGroup]="ticketForm" (ngSubmit)="showView(ticketForm.value)" novalidate>
         <div class="form-select">
@@ -128,11 +128,11 @@
     <div [hidden]="valid">
         <h3>TICKET SUBMISSION CONFIRMATION</h3>
         <hr>
-        <h5>The admin team will process your ticket shortly!</h5>
+        <h5>The admin team will process your ticket shortly after you click on Submit button below!</h5>
         <hr>
     </div>
     <div [hidden]="!valid">
-        <p>{{msg}}</p>
+        <button type="button" class="btn btn-success" disabled>{{msg}}</button>
     </div>
 
     <div class="submissionDetails">
@@ -152,7 +152,8 @@
         <br><br>
         <div class="buttons">
             <button type="button" class="btn btn-info" (click)="print()">Print</button>&nbsp;
-            <button type="button" class="btn btn-info" (click)="basic()">Edit</button>&nbsp;
+            <button [hidden]="!finallySubmitted" type="button" class="btn btn-info"
+                (click)="basic()">Edit</button>&nbsp;
             <button type="button" class="btn btn-info" (click)="addTicket()">Submit Ticket</button>&nbsp;
             <button type="button" class="btn btn-info" [routerLink]="['../']">Return to Dashboard</button>
         </div>
