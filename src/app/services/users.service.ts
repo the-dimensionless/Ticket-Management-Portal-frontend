@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { tick } from '@angular/core/testing';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -37,8 +38,8 @@ export class UsersService {
   }
 
   updateUserTicket(uid: number, tid: number, ticket) {
-    let body = JSON.stringify(ticket);
-    return this.http.put('server/users/' + uid + "/" + tid, body, httpOptions);
+    console.log("about to send on id", ticket);
+    return this.http.put('server/user/' + uid + "/" + tid, ticket, httpOptions);
   }
 
   loginUser(username: string, password: string) {

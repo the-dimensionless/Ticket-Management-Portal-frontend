@@ -5,111 +5,146 @@
 <div class="container">
     <div class="container">
         <h2>Ticket Details</h2>
-        <p>You might want to update some details...Don't worry we have it covered!</p>
-        <form action="/action_page.php">
+        <div [hidden]="valid">
+            <p>You might want to update some details...Don't worry we have it covered!</p>
+        </div>
+        <div [hidden]="!valid">
+            <p>{{msg}}</p>
+        </div>
+        <hr>
+        <form novalidate>
             <div class="row">
                 <div class="col">
                     <label>Ticket Id</label>
-                    <input type="text" class="form-control" id="tid" name="id" value="{{ticket_id}}" disabled>
+                    <input type="text" class="form-control" id="ticketId" name="id" value="{{ticket_id}}" disabled>
                 </div>
                 <div class="col">
                     <label>Status</label>
-                    <input type="text" class="form-control" value="{{ticketDetails.status}}" name="pswd"
-                        [disabled]="editable">
+                    <input type="text" class="form-control" id="status" value="{{ticketDetails.status}}" name="pswd"
+                        disabled>
                 </div>
                 <div class="col">
                     <label>Request Type</label>
-                    <input type="text" class="form-control" value="{{ticketDetails.requestType}}" name="pswd"
+                    <select class="form-control" id="requestType" value="{{ticketDetails.requestType}}" name="pswd"
                         [disabled]="editable">
+                        <option value="Travel Tickets">Travel Tickets</option>
+                        <option value="Hotel Stay">Hotel Stay</option>
+                        <option value="Visa">Visa</option>
+                        <option value="Work Permit">Work Permit</option>
+                    </select>
+
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col">
                     <label>Priority</label>
-                    <input type="text" class="form-control" id="tid" name="id" value="{{ticketDetails.priority}}"
+                    <select class="form-control" id="priority" name="id" value="{{ticketDetails.priority}}"
                         [disabled]="editable">
+                        <option value="Urgent">Urgent</option>
+                        <option value="Immediate">Immediate</option>
+                        <option value="Normal">Normal</option>
+                    </select>
                 </div>
                 <div class="col">
                     <label>From Location</label>
-                    <input type="text" class="form-control" value="{{ticketDetails.fromLocation}}" name="pswd"
+                    <select class="form-control" id="tocity" value="{{ticketDetails.fromLocation}}" name="pswd"
                         [disabled]="editable">
+                        <option value="Dhanbad">Dhanbad</option>
+                        <option value="Ranchi">Ranchi</option>
+                        <option value="Jamshedpur">Jamshedpur</option>
+                    </select>
                 </div>
                 <div class="col">
                     <label>To Location</label>
-                    <input type="text" class="form-control" value="{{ticketDetails.toLocation}}" name="pswd"
+                    <select class="form-control" id="fromcity" value="{{ticketDetails.toLocation}}" name="pswd"
                         [disabled]="editable">
+                        <option value="Dhanbad">Dhanbad</option>
+                        <option value="Ranchi">Ranchi</option>
+                        <option value="Jamshedpur">Jamshedpur</option>
+                    </select>
+
                 </div>
             </div><br>
             <div class="row">
                 <div class="col">
                     <label>Date Created</label>
-                    <input type="text" class="form-control" id="tid" name="id" value="{{ticketDetails.dateCreated}}"
-                        [disabled]="editable">
+                    <input type="date" class="form-control" id="dateCreated" name="id"
+                        value="{{ticketDetails.dateCreated}}" disabled>
                 </div>
                 <div class="col">
                     <label>Last Updated</label>
-                    <input type="text" class="form-control" value="{{ticketDetails.dateUpdated}}" name="pswd"
-                        [disabled]="editable">
+                    <input type="text" class="form-control" id="dateUpdated" value="{{ticketDetails.dateUpdated}}"
+                        name="pswd" disabled>
                 </div>
                 <div class="col">
                     <label>Expense Borne By</label>
-                    <input type="text" class="form-control" value="{{ticketDetails.expenseBorneBy}}" name="pswd"
+                    <select class="form-control" id="expense" value="{{ticketDetails.expenseBorneBy}}" name="pswd"
                         [disabled]="editable">
+                        <option value="Client">Client</option>
+                        <option value="Nagarro">Nagarro</option>
+                    </select>
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col">
                     <label>Travel Start Date</label>
-                    <input type="text" class="form-control" id="tid" name="id" value="{{ticketDetails.startDate}}"
+                    <input type="date" class="form-control" id="startDate" name="id" value="{{ticketDetails.startDate}}"
                         [disabled]="editable">
                 </div>
                 <div class="col">
                     <label>Travel End Date</label>
-                    <input type="text" class="form-control" value="{{ticketDetails.endDate}}" name="pswd"
+                    <input type="date" class="form-control" id="endDate" value="{{ticketDetails.endDate}}" name="pswd"
                         [disabled]="editable">
                 </div>
                 <div class="col">
                     <label>Travel Approved By</label>
-                    <input type="text" class="form-control" value="{{ticketDetails.travelApproverName}}" name="pswd"
-                        [disabled]="editable">
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col">
-                    <label>Upper Bound On Amount</label>
-                    <input type="text" class="form-control" id="tid" name="id"
-                        value="{{ticketDetails.upperBoundOnAmount}}" [disabled]="editable">
-                </div>
-                <div class="col">
-                    <label>Passport Number</label>
-                    <input type="text" class="form-control" value="{{ticketDetails.passportNumber}}" name="pswd"
-                        [disabled]="editable">
-                </div>
-                <div class="col">
-                    <label>Processed By</label>
-                    <input type="text" class="form-control" value="{{ticketDetails.processedBy || 'Not yet processed'}}"
+                    <input type="text" id="approver" class="form-control" value="{{ticketDetails.travelApproverName}}"
                         name="pswd" [disabled]="editable">
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col">
+                    <label>Upper Bound On Amount</label>
+                    <input type="text" class="form-control" id="upperBound" name="id"
+                        value="{{ticketDetails.upperBoundOnAmount}}" [disabled]="editable">
+                </div>
+                <div class="col">
+                    <label>Passport Number</label>
+                    <input type="text" class="form-control" id="passport" value="{{ticketDetails.passportNumber}}"
+                        name="pswd" [disabled]="editable">
+                </div>
+                <div class="col">
+                    <label>Processed By</label>
+                    <input type="text" class="form-control" id="processed"
+                        value="{{ticketDetails.processedBy || 'Not yet processed'}}" name="pswd" disabled>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
                     <label>Duration</label>
-                    <input type="text" class="form-control" id="tid" name="id" value="{{ticketDetails.duration}}"
+                    <input type="text" id="duration" class="form-control" name="id" value="{{ticketDetails.duration}}"
                         [disabled]="editable">
                 </div>
                 <div class="col">
+                    <label>Project</label>
+                    <textarea class="form-control" id="project" value="{{ticketDetails.project}}" rows="5"
+                        maxlength="500" [disabled]="editable"></textarea>
+                </div>
+                <div class="col">
                     <label>Additonal Information</label>
-                    <input type="text" class="form-control" value="{{ticketDetails.additionalDetails}}" name="pswd"
-                        [disabled]="editable">
+                    <textarea class="form-control" id="additionalInformation"
+                        value="{{ticketDetails.additionalDetails}}" rows="5" maxlength="1000"
+                        [disabled]="editable"></textarea>
                 </div>
             </div>
             <br>
             <button type="submit" class="btn btn-primary mt-3" (click)="makeEdits()">Edit</button>&nbsp;
-            <button type="submit" class="btn btn-primary mt-3" (click)="cancel()">Cancel</button>
+            <button type="submit" class="btn btn-primary mt-3" (click)="cancel()">Cancel</button>&nbsp;
+            <button type="submit" class="btn btn-primary mt-3" (click)="update()">ReSubmit</button>
         </form>
     </div>
 </div>
