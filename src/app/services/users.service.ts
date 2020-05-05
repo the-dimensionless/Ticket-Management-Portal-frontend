@@ -51,8 +51,12 @@ export class UsersService {
   }
 
   registerUser(userformdata) {
+    const headerSettings: { [name: string]: string | string[]; } = {};
+    headerSettings['Content-Type'] = 'application/json';
+    const newHeader = new HttpHeaders(headerSettings);
+
     let body = JSON.stringify(userformdata);
-    return this.http.post("server/user", body, httpOptions);
+    return this.http.post("server/user", body, { headers: newHeader });
   }
 
   getCoronaData(link: string) {
@@ -65,7 +69,8 @@ export class UsersService {
 
   remindPassword(mail: string) {
     let body = {
-      "email": mail
+      "username": mail,
+      "pass": null
     };
     return this.http.post('server/user/forgotpassword', body);
   }
