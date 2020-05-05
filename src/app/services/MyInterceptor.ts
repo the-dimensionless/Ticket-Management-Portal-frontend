@@ -29,14 +29,23 @@ export class MyInterceptor implements HttpInterceptor {
         }
         if (token) {
             headerSettings['Authorization'] = 'Bearer ' + token;
-        }
-        headerSettings['Content-Type'] = 'application/json';
-        const newHeader = new HttpHeaders(headerSettings);
 
-        changedRequest = request.clone({
-            headers: newHeader
-        });
-        return next.handle(changedRequest).toPromise();
+            headerSettings['Content-Type'] = 'application/json';
+            const newHeader = new HttpHeaders(headerSettings);
+
+            changedRequest = request.clone({
+                headers: newHeader
+            });
+            return next.handle(changedRequest).toPromise();
+        }
+        /*  headerSettings['Content-Type'] = 'application/json';
+         const newHeader = new HttpHeaders(headerSettings);
+ 
+         changedRequest = request.clone({
+             headers: newHeader
+         }); */
+        /*  return next.handle(changedRequest).toPromise(); */
+        return next.handle(request).toPromise();
     }
 
 }

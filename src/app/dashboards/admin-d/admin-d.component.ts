@@ -48,7 +48,7 @@ export class AdminDComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: Router, private AdminAuthServicesService: AuthAdminServicesService) {
     this.data = JSON.parse(sessionStorage.getItem('admin'));
-    console.log(this.data["pass"]);
+    console.log(this.data["password"]);
 
     this.adminService.getTicketsAll(this.data).subscribe(
       loaded => {
@@ -89,17 +89,28 @@ export class AdminDComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', this.uploadForm.get('file').value);
     formData.append('ticketId', this.ticket["ticketId"]);
-    formData.append('comments', this.uploadForm.get('comments').value);
+    formData.append('comments', (<HTMLInputElement>document.getElementById('comments')).value);
+    formData.append('adminId', JSON.parse(sessionStorage.getItem('admin'))["adminId"]);
 
-    console.log(formData["file"]);
-    this.adminService.addData(formData, this.ticket["ticketId"]).subscribe(
+    /* this.adminService.addData(formData, this.ticket["ticketId"]).subscribe(
       data => {
         console.log("posted ", data);
       },
       err => {
         console.log("error", err);
       }
+    ); */
+
+    let status = ((<HTMLInputElement>document.getElementById('status')).value);
+    this.adminService.updateTicket(status, this.ticket["ticketId"]).subscribe(
+      data => {
+        console.log("updated");
+      },
+      err => {
+        console.log("error ", err);
+      }
     );
+
 
   }
 

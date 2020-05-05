@@ -13,9 +13,11 @@ export class AdminService {
 
   getTicketsAll(data) {
     let body = {
-      "username": data["username"],
-      "pass": data["pass"]
+      "username": data["email"],
+      "pass": data["password"]
     }
+    console.log("body posting", body);
+
     return this.http.post("server/admin/getTickets", body);
   }
 
@@ -23,9 +25,13 @@ export class AdminService {
     return this.http.get("server/admin/" + id);
   }
 
-  updateTicket(ticket) {
-    let body = JSON.stringify(ticket);
-    return this.http.put("server/admin", body, httpOptions);
+  updateTicket(status, id) {
+    let data = JSON.parse(sessionStorage.getItem('admin'));
+    let body = {
+      "username": data["email"],
+      "pass": data["password"]
+    }
+    return this.http.post("server/admin/updateTicket/" + status + "/" + id, body, httpOptions);
   }
 
   login(form) {
