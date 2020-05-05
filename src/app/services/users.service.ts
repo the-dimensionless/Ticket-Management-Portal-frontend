@@ -58,4 +58,8 @@ export class UsersService {
   getCoronaData(link: string) {
     return this.http.get(link);
   }
+
+  getAdminResponses(id: number) {
+    return this.http.get('server/user/getAdminResponses/' + id);
+  }
 }

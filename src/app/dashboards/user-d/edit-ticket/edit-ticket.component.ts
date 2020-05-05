@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthServicesService } from 'src/app/auth/auth-services.service';
+import * as FileSaver from 'file-saver';
+
 
 @Component({
   selector: 'app-edit-ticket',
@@ -17,8 +19,10 @@ export class EditTicketComponent implements OnInit {
   ticketForm: any;
   msg: string;
   valid: boolean = false;
+  comments: any;
 
-  constructor(private actRoute: ActivatedRoute, private auth: AuthServicesService, private userService: UsersService) {
+  constructor(private actRoute: ActivatedRoute,
+    private auth: AuthServicesService, private userService: UsersService) {
     this.ticket_id = this.actRoute.snapshot.params.id;
     this.user_id = JSON.parse(sessionStorage.getItem('user'))["userId"];
 
@@ -31,6 +35,8 @@ export class EditTicketComponent implements OnInit {
         console.log("error ", err);
       }
     );
+
+    this.getResponses();
 
     this.editable = true;
   }
@@ -90,6 +96,28 @@ export class EditTicketComponent implements OnInit {
 
   logout() {
     this.auth.logout();
+  }
+
+  getResponses() {
+    this.userService.getAdminResponses(this.ticket_id).subscribe(
+      data => {
+        this.comments = data;
+        console.log(typeof (data["file"]))
+      },
+      err => {
+        console.log("error ", err);
+      }
+    );
+  }
+
+  display(comment) {
+    let blob = new Blob(comment["file"], { type: 'application/octet-stream' });
+    console.log("here");
+    // console.log("all good ");
+    // FileSaver.saveAs(blob, "adminResponse.pdf");
+    /*   window.URL.createObjectURL(blob); */
+
+
   }
 
 }

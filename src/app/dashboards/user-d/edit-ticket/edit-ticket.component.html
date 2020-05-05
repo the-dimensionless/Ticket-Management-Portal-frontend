@@ -148,3 +148,19 @@
         </form>
     </div>
 </div>
+<hr>
+<div class="container">
+    <h3>Responses from Admin Panel.</h3>
+    <p>A list of comments and related documents.</p>
+    <div>
+        <div class="card" *ngFor="let comment of comments">
+            <div class="card-body">
+                <h5 class="card-title">{{comment.adminId}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Admin Id</h6>
+                <p class="card-text">{{comment.comments}}</p>
+                <a class="card-link" href="#">{{comment.fileName}}</a>
+                <button class="btn btn-primary" (click)="display(comment)">Download</button>
+            </div>
+        </div>
+    </div>
+</div>
