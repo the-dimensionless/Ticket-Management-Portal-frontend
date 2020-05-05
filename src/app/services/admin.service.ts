@@ -16,8 +16,6 @@ export class AdminService {
       "username": data["email"],
       "pass": data["password"]
     }
-    console.log("body posting", body);
-
     return this.http.post("server/admin/getTickets", body);
   }
 

@@ -40,6 +40,12 @@ export class AdminDComponent implements OnInit {
       },
       status: {
         title: 'Status'
+      },
+      businessUnit: {
+        title: 'Business Unit'
+      },
+      user: {
+        title: "Employee mail"
       }
     }
   };
@@ -51,6 +57,10 @@ export class AdminDComponent implements OnInit {
 
     this.adminService.getTicketsAll(this.data).subscribe(
       loaded => {
+        Object.values(loaded).forEach(i => {
+          i.businessUnit = i["user"]["businessUnit"];
+          i.user = i["user"]["email"];
+        })
         this.data = loaded;
       }
     )
