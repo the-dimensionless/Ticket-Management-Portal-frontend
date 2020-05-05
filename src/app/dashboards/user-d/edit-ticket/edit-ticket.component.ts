@@ -88,6 +88,7 @@ export class EditTicketComponent implements OnInit {
           console.log("Updated Successfully");
           this.valid = true;
           this.msg = "Well, your details have been updated!"
+          window.scrollTo(0, 0);
         },
         err => console.log(err)
       );

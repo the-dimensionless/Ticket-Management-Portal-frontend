@@ -1,11 +1,12 @@
 <nav class="navbar navbar-light fixed-top bg-dark">
     <div class="container">
         <h1>Welcome to Nagarro Travel</h1>
+        <button type="button" id="home" class="btn btn-info" (click)="base()">Dashboard</button>
     </div>
     <div>
         <button type="button" class="btn btn-danger" (click)="logout()">Logout</button>
     </div>
-</nav><br><br>
+</nav><br>
 
 <div [hidden]="this.viewingTickets">
     <div class="jumbotron jumbotron-fluid">
@@ -24,30 +25,32 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h2 class="display-4">Ticket Details</h2>
-            <p class="lead">Ticket particulars as mentioned below</p>
+            <p class=" lead">Ticket particulars as mentioned below</p>
         </div>
     </div>
     <hr>
     <div class="container">
-        <h2>List Group With Badges</h2>
+        <h2>Details of ticket Id: #{{ticket["ticketId"]}}</h2>
         <ul class="list-group">
-            <li class="list-group-item">Ticket Status <span class="badge">{{ticket["status"]}}</span></li>
-            <li class="list-group-item">Priority <span class="badge">{{ticket["priority"]}}</span></li>
-            <li class="list-group-item">From City <span class="badge">{{ticket["fromLocation"]}}</span></li>
-            <li class="list-group-item">To City <span class="badge">{{ticket["toLocation"]}}</span></li>
-            <li class="list-group-item">Start Date <span class="badge">{{ticket["startDate"]}}</span></li>
-            <li class="list-group-item">End Date <span class="badge">{{ticket["endDate"]}}</span></li>
-            <li class="list-group-item">Expense Borne By <span class="badge">{{ticket["expenseBorneBy"]}}</span></li>
-            <li class="list-group-item">Travel Duration <span class="badge">{{ticket["durationOfTravel"]}}</span></li>
-            <li class="list-group-item">Project Name <span class="badge">{{ticket["project"]}}</span></li>
-            <li class="list-group-item">Travel Approver Name <span class="badge">{{ticket["approver"]}}</span></li>
-            <li class="list-group-item">Additional Details <span class="badge">{{ticket["additionalDetails"]}}</span>
+            <li class="list-group-item">Ticket Status : {{ticket["status"]}}</li>
+            <li class="list-group-item">Priority : {{ticket["priority"]}}</li>
+            <li class="list-group-item">From City : {{ticket["fromLocation"]}}</li>
+            <li class="list-group-item">To City : {{ticket["toLocation"]}}</li>
+            <li class="list-group-item">Start Date : {{ticket["startDate"]}}</li>
+            <li class="list-group-item">End Date : {{ticket["endDate"]}} </li>
+            <li class="list-group-item">Expense Borne By : {{ticket["expenseBorneBy"]}}
             </li>
-            <li class="list-group-item">Upper Bound on Amount <span class="badge">{{ticket["upperBound"]}}</span></li>
-            <li class="list-group-item">Raised By User Id <span class="badge"></span></li>
-            <li class="list-group-item">User name <span class="badge"></span></li>
-            <li class="list-group-item">Business Unit <span class="badge"></span></li>
-            <li class="list-group-item">Title <span class="badge"></span></li>
+            <li class="list-group-item">Travel Duration : {{ticket["durationOfTravel"]}}</li>
+            <li class="list-group-item">Project Name : {{ticket["project"]}}</li>
+            <li class="list-group-item">Travel Approver Name : {{ticket["approver"]}}</li>
+            <li class="list-group-item">Additional Details : {{ticket["additionalDetails"]}}
+            </li>
+            <li class="list-group-item">Upper Bound on Amount : {{ticket["upperBound"]}}</li>
+            <li class="list-group-item">Raised By User Id : {{ticket["user"]["userId"]}}<span class="badge"></span></li>
+            <li class="list-group-item">User name : {{ticket["user"]["email"]}}<span class="badge"></span></li>
+            <li class="list-group-item">Business Unit : {{ticket["user"]["businessUnit"]}}<span class="badge"></span>
+            </li>
+            <li class="list-group-item">Title : {{ticket["user"]["title"]}}<span class="badge"></span></li>
         </ul>
         <hr>
         <h3>Add Comments</h3>

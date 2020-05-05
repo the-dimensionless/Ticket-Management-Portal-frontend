@@ -109,8 +109,10 @@ export class AdminDComponent implements OnInit {
         console.log("error ", err);
       }
     );
+  }
 
-
+  base() {
+    this.viewingTickets = false;
   }
 
 }
