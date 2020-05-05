@@ -1,6 +1,3 @@
-<div>
-    <button type="button" class="btn btn-danger" (click)="logout()">Logout</button>
-</div><br><br>
 <div class="sidenav"><br>
     <label>Welcome</label>
     <label>{{fname}} </label>
@@ -9,8 +6,9 @@
     </div>
 </div>
 
-<div class="main"><br><br>
+<div class="main"><br>
     <h2>Welcome to User Dashboard</h2>
+    <hr>
     <div class="container-sm">
         <div class="container">
             <div class="alert alert-warning" role="alert">
@@ -23,7 +21,8 @@
             <div class="alert alert-info" role="alert">
                 <h2>Track Corona Activity</h2>
                 <label>Enter Destination Country:</label>&nbsp;
-                <input type="text" id="corona-target" placeholder="Enter Destination Country">&nbsp;
+                <input type="text" id="corona-target" class="form-control"
+                    placeholder="Enter Destination Country">&nbsp;<br>
                 <button type="button" class="btn btn-info" (click)="display()">Find</button>
             </div>
         </div>
@@ -40,7 +39,7 @@
 
     <br>
     <div class="container">
-        <h2>List of Submitted Tickets</h2>
+        <h3>List of Submitted Tickets</h3>
         <a [routerLink]="['/user/dashboard/addTicket']">
             <h4>Submit a new Ticket</h4>
         </a>

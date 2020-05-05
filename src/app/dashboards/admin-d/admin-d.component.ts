@@ -40,6 +40,9 @@ export class AdminDComponent implements OnInit {
       },
       status: {
         title: 'Status'
+      },
+      businessUnit: {
+        title: 'business Unit'
       }
     }
   };
@@ -92,15 +95,16 @@ export class AdminDComponent implements OnInit {
     formData.append('comments', (<HTMLInputElement>document.getElementById('comments')).value);
     formData.append('adminId', JSON.parse(sessionStorage.getItem('admin'))["adminId"]);
 
-    /* this.adminService.addData(formData, this.ticket["ticketId"]).subscribe(
+    this.adminService.addData(formData, this.ticket["ticketId"]).subscribe(
       data => {
         console.log("posted ", data);
       },
       err => {
         console.log("error", err);
       }
-    ); */
+    );
 
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     let status = ((<HTMLInputElement>document.getElementById('status')).value);
     this.adminService.updateTicket(status, this.ticket["ticketId"]).subscribe(
       data => {

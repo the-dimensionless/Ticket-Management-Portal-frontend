@@ -6,14 +6,14 @@
     top: 0;
     left: 0;
     background-color: #111;
-    overflow-x: hidden;
-    padding-top: 80px;
+    
+    padding-top: 20px;
   }
 
   .sidenav label {
-    padding: 6px 8px 6px 16px;
+    padding: 2px 8px 6px 16px;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 30px;
     color: #818181;
     display: block;
   }
@@ -31,4 +31,7 @@
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+  }
+  h2 {
+    padding-left: 14%;
   }

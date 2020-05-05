@@ -1,68 +1,73 @@
-<p>user-reg-form works!</p>
-<br><br>
+<br>
+<h2>User Registration Form</h2>
+<hr>
+<br>
 <div class="container" *ngIf="!editable">
     <form class="form" [formGroup]="userForm" (ngSubmit)="submitUserForm(userForm.value)" novalidate>
-        <div *ngIf="validMessage != '' ">
-            <h3 class="has-info">{{validMessage}}</h3>
+        <div *ngIf="validMessage">
+            <h3 class="alert alert-danger">{{validMessage}}</h3>
+        </div>
+        <div class=" form-group">
+            Enter First Name: <input formControlName="firstName" class="form-control" type="text" id="fname"
+                placeholder="Enter First Name" required><br>
         </div>
         <div class="form-group">
-            Enter First Name: <input formControlName="firstName" type="text" id="fname" placeholder="Enter First Name"
-                required><br><br>
+            Enter Last Name: <input formControlName="lastName" class="form-control" type="text" id="lname"
+                placeholder="Enter Last Name" required><br>
         </div>
         <div class="form-group">
-            Enter Last Name: <input formControlName="lastName" type="text" id="lname" placeholder="Enter Last Name"
-                required><br><br>
+            Enter Email Id: <input formControlName="email" class="form-control" type="email" id="email"
+                placeholder="Enter Email Id" required><br>
         </div>
         <div class="form-group">
-            Enter Email Id: <input formControlName="email" type="email" id="email" placeholder="Enter Email Id"
-                required><br><br>
+            Enter Business Unit: <input formControlName="businessUnit" class="form-control" type="text" id="bUnit"
+                placeholder="Enter Business Unit" required><br>
         </div>
         <div class="form-group">
-            Enter Business Unit: <input formControlName="businessUnit" type="text" id="bUnit"
-                placeholder="Enter Business Unit" required><br><br>
+            Enter Title: <input formControlName="title" class="form-control" type="text" id="title"
+                placeholder="Enter title" required><br>
         </div>
         <div class="form-group">
-            Enter Title: <input formControlName="title" type="text" id="title" placeholder="Enter title"
-                required><br><br>
+            Enter Telephone: <input formControlName="telephone" class="form-control" type="text" id="telephone"
+                placeholder="Enter Telephone" maxlength="15" minlength="10" required><br>
         </div>
         <div class="form-group">
-            Enter Telephone: <input formControlName="telephone" type="text" id="telephone" placeholder="Enter Telephone"
-                required><br><br>
+            Enter Address1: <input formControlName="address1" class="form-control" type="text" id="add1"
+                placeholder="Enter Address1" required><br>
         </div>
         <div class="form-group">
-            Enter Address1: <input formControlName="address1" type="text" id="add1" placeholder="Enter Address1"
-                required><br><br>
-        </div>
-        <div class="form-group">
-            Enter Address2: <input formControlName="address2" type="text" id="add2"
+            Enter Address2: <input formControlName="address2" class="form-control" type="text" id="add2"
                 placeholder="Enter Address2"><br><br>
         </div>
         <div class="form-group">
             Enter Country:
-            <select id="country" placeholder="Enter Country" formControlName="country" required>
-                <option *ngFor="let c of country" value='{{c["name"]}}' (click)="getState(c)">{{c["name"]}}</option>
+            <select id="country" placeholder="Enter Country" class="form-control" (ngModelChange)="getState($event)"
+                formControlName="country" required>
+                <option *ngFor="let c of country" value='{{c["name"]}}'>{{c["name"]}}</option>
             </select>
             <br><br>
         </div>
         <div class="form-group">
             Enter State:
-            <select id="state" placeholder="Enter State" formControlName="state" required>
-                <option *ngFor="let c of state" value='{{c["name"]}}' (click)="getCity(c)">{{c["name"]}}</option>
+            <select id="state" placeholder="Enter State" class="form-control" (ngModelChange)="getCity($event)"
+                formControlName="state" required>
+                <option *ngFor="let c of state" value='{{c["name"]}}'>{{c["name"]}}</option>
             </select>
             <br><br>
         </div>
 
         <div class="form-group">
             Enter City:
-            <select id="city" placeholder="Enter City" formControlName="city" required>
+            <select id="city" placeholder="Enter City" class="form-control" (ngModelChange)="getValue($event)"
+                formControlName="city" required>
                 <option *ngFor="let c of city" value='{{c["name"]}}'>{{c["name"]}}</option>
             </select>
             <br><br>
         </div>
 
         <div class="form-group">
-            Enter Zip Code: <input formControlName="zip" type="text" id="zip" placeholder="Enter Zip Code"
-                required><br><br>
+            Enter Zip Code: <input formControlName="zip" class="form-control" type="text" id="zip"
+                placeholder="Enter Zip Code" required><br><br>
         </div>
         <button type="submit" class="btn btn-primary" id="registerButton">Submit
             Details</button><br><br>

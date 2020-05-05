@@ -20,6 +20,10 @@ export class UserRegFormComponent implements OnInit {
   state: any;
   city: any;
 
+  countrySelected: string;
+  stateSelected: string;
+  citySelected: string;
+
   public showReview: boolean;
   public submitter: boolean;
   countries: Array<any> = [];
@@ -69,14 +73,15 @@ export class UserRegFormComponent implements OnInit {
         "telephone": FormValues.telephone,
         "address1": FormValues.address1,
         "address2": FormValues.address2,
-        "country": FormValues.country,
-        "state": FormValues.state,
-        "city": FormValues.city,
+        "country": this.countrySelected,
+        "state": this.stateSelected,
+        "city": this.citySelected,
         "zip": FormValues.zip
       };
       this.userService.registerUser(body).subscribe(
         data => {
           this.onSuccess(FormValues);
+          window.scrollTo(0, 0);
           return true;
         },
         error => {
@@ -84,6 +89,7 @@ export class UserRegFormComponent implements OnInit {
           return Observable.throw(error);
         })
     } else {
+      window.scrollTo(0, 0);
       this.validMessage = "Please enter the details correctly!"
     }
 
@@ -104,7 +110,9 @@ export class UserRegFormComponent implements OnInit {
   }
 
   getState(event) {
-    this.regionService.getStates(event["id"]).subscribe(
+    this.countrySelected = event;
+    let id = Number((<HTMLSelectElement>document.getElementById("country")).value);
+    this.regionService.getStates(id).subscribe(
       data => {
         console.log("States loaded");
         this.state = Object.values(data);
@@ -116,7 +124,11 @@ export class UserRegFormComponent implements OnInit {
   }
 
   getCity(event) {
-    this.regionService.getCities(event["id"]).subscribe(
+    console.log(event);
+
+    this.stateSelected = event;
+    let id = Number((<HTMLSelectElement>document.getElementById("state")).value);
+    this.regionService.getCities(id).subscribe(
       data => {
         console.log("Cities loaded");
         this.city = Object.values(data);
@@ -125,5 +137,8 @@ export class UserRegFormComponent implements OnInit {
         console.log("error", err);
       }
     )
+  }
+  getValue(event) {
+    this.citySelected = event;
   }
 }

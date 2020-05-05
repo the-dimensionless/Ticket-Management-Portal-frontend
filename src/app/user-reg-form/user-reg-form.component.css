@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital@1&display=swap');
 .container {
     width: 500px;
     clear: both;
@@ -7,3 +8,16 @@
     width: 100%;
     clear: both;
   }
+
+  h2 {
+    padding-left: 32%;
+  }
+
+  * {
+    font-family: 'Ubuntu', sans-serif;
+  }
+
+  input.submitted.ng-invalid
+{
+  border:1px solid #f00;
+}

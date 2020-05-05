@@ -1,7 +1,4 @@
-<br><br><br>
-
-<p>edit-ticket works!</p>
-
+<br>
 <div class="container">
     <div class="container">
         <h2>Ticket Details</h2>
@@ -107,10 +104,11 @@
             <br>
             <div class="row">
                 <div class="col">
-                    <label>Upper Bound On Amount</label>
-                    <input type="text" class="form-control" id="upperBound" name="id"
-                        value="{{ticketDetails.upperBoundOnAmount}}" [disabled]="editable">
+                    <label>Duration</label>
+                    <input type="text" id="duration" class="form-control" name="id" value="{{ticketDetails.duration}}"
+                        [disabled]="editable">
                 </div>
+
                 <div class="col">
                     <label>Passport Number</label>
                     <input type="text" class="form-control" id="passport" value="{{ticketDetails.passportNumber}}"
@@ -125,9 +123,9 @@
             <br>
             <div class="row">
                 <div class="col">
-                    <label>Duration</label>
-                    <input type="text" id="duration" class="form-control" name="id" value="{{ticketDetails.duration}}"
-                        [disabled]="editable">
+                    <label>Upper Bound On Amount</label>
+                    <textarea type="text" class="form-control" id="upperBound" name="id" rows="5"
+                        value="{{ticketDetails.upperBoundOnAmount}}" [disabled]="editable"></textarea>
                 </div>
                 <div class="col">
                     <label>Project</label>
