@@ -27,7 +27,6 @@ export class AdminLoginFormComponent implements OnInit {
       this.adminService.login(form).subscribe(
         data => {
           console.log("Success");
-          console.log(data);
           sessionStorage.setItem('admin', JSON.stringify(data));
           this.route.navigate(["admin/dashboard"]);
         },

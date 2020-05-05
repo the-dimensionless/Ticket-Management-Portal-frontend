@@ -48,10 +48,8 @@ export class UserDComponent implements OnInit {
   }
 
   getData() {
-
     this.userService.getUserTicketsAll(this.id).toPromise().then(
       data => {
-        /* console.log(data); */
         for (let key in data)
           if (data.hasOwnProperty(key))
             this.user_tickets.push(data[key]);
@@ -89,12 +87,6 @@ export class UserDComponent implements OnInit {
         console.log("error", err);
       }
     )
-    /* var x = document.getElementById("chart");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    } */
   }
 
   onLoad(data) {

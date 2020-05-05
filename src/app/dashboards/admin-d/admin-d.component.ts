@@ -40,9 +40,6 @@ export class AdminDComponent implements OnInit {
       },
       status: {
         title: 'Status'
-      },
-      businessUnit: {
-        title: 'business Unit'
       }
     }
   };
@@ -51,11 +48,9 @@ export class AdminDComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: Router, private AdminAuthServicesService: AuthAdminServicesService) {
     this.data = JSON.parse(sessionStorage.getItem('admin'));
-    console.log(this.data["password"]);
 
     this.adminService.getTicketsAll(this.data).subscribe(
       loaded => {
-        console.log("Collected tickets", loaded);
         this.data = loaded;
       }
     )
@@ -97,7 +92,7 @@ export class AdminDComponent implements OnInit {
 
     this.adminService.addData(formData, this.ticket["ticketId"]).subscribe(
       data => {
-        console.log("posted ", data);
+        console.log("posted ");
       },
       err => {
         console.log("error", err);

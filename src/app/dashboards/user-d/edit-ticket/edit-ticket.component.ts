@@ -102,7 +102,6 @@ export class EditTicketComponent implements OnInit {
     this.userService.getAdminResponses(this.ticket_id).subscribe(
       data => {
         this.comments = data;
-        console.log(data);
       },
       err => {
         console.log("error ", err);
@@ -111,22 +110,10 @@ export class EditTicketComponent implements OnInit {
   }
 
   display(comment) {
-    console.log(comment.file);
     fetch(`data:application/pdf;base64,${comment.file}`)
       .then(res => res.blob())
       .then(blob => FileSaver.saveAs(blob, "adminResponse.pdf"))
-
-    //data:application/pdf
-
-    /* let blob = new Blob(atob(comment["file"]), { type: 'text/plain' }); */
-    console.log("here");
-    // console.log("all good ");
-    // FileSaver.saveAs(blob, "adminResponse.pdf");
-    /*   window.URL.createObjectURL(blob); */
-
-
   }
-
 }
 
 
