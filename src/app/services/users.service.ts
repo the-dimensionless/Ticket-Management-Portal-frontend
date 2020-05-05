@@ -62,4 +62,11 @@ export class UsersService {
   getAdminResponses(id: number) {
     return this.http.get('server/user/getAdminResponses/' + id);
   }
+
+  remindPassword(mail: string) {
+    let body = {
+      "email": mail
+    };
+    return this.http.post('server/user/forgotpassword', body);
+  }
 }
