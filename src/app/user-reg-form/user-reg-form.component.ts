@@ -63,7 +63,7 @@ export class UserRegFormComponent implements OnInit {
 
   submitUserForm(FormValues) {
     if (this.userForm.valid) {
-      let body = {
+      this.values = {
         "username": FormValues.email,
         "firstName": FormValues.firstName,
         "lastName": FormValues.lastName,
@@ -78,16 +78,7 @@ export class UserRegFormComponent implements OnInit {
         "city": this.citySelected,
         "zip": FormValues.zip
       };
-      this.userService.registerUser(body).subscribe(
-        data => {
-          this.onSuccess(FormValues);
-          window.scrollTo(0, 0);
-          return true;
-        },
-        error => {
-          this.validMessage = "Uh-oh.... It seems there is some error";
-          return Observable.throw(error);
-        })
+      this.onSuccess();
     } else {
       window.scrollTo(0, 0);
       this.validMessage = "Please enter the details correctly!"
@@ -95,8 +86,7 @@ export class UserRegFormComponent implements OnInit {
 
   }
 
-  onSuccess(FormValues) {
-    this.values = FormValues;
+  onSuccess() {
     this.editable = true;
     this.validMessage = "You have been registered successfully";
   }
@@ -111,12 +101,10 @@ export class UserRegFormComponent implements OnInit {
 
   getState(event) {
     this.countrySelected = event.name;
-    // let id = Number((<HTMLSelectElement>document.getElementById("country")).value);
     let id = event.id;
 
     this.regionService.getStates(id).subscribe(
       data => {
-        console.log("States loaded");
         this.state = Object.values(data);
       },
       err => {
@@ -130,7 +118,6 @@ export class UserRegFormComponent implements OnInit {
     let id = event.id;
     this.regionService.getCities(id).subscribe(
       data => {
-        console.log("Cities loaded");
         this.city = Object.values(data);
       },
       err => {
@@ -140,5 +127,25 @@ export class UserRegFormComponent implements OnInit {
   }
   getValue(event) {
     this.citySelected = event;
+  }
+
+  reg() {
+    this.userService.registerUser(this.values).subscribe(
+      data => {
+        this.validMessage = "You have been registered successfully!";
+        this.editable = false;
+        window.scrollTo(0, 0);
+        return true;
+      },
+      error => {
+        if (error["statusText"] == "Conflict") {
+          this.validMessage = "Username already exists";
+        } else {
+          this.validMessage = "Uh-oh.... It seems there is some error";
+        }
+        window.scrollTo(0, 0);
+        console.log(error);
+        return;
+      });
   }
 }
