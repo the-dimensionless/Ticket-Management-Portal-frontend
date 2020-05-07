@@ -43,7 +43,7 @@
             Enter Country:
             <select id="country" placeholder="Enter Country" class="form-control" (ngModelChange)="getState($event)"
                 formControlName="country" required>
-                <option *ngFor="let c of country" value='{{c["name"]}}'>{{c["name"]}}</option>
+                <option *ngFor="let c of country" value='{{c["name"]}}' [ngValue]="c">{{c["name"]}}</option>
             </select>
             <br><br>
         </div>
@@ -51,7 +51,7 @@
             Enter State:
             <select id="state" placeholder="Enter State" class="form-control" (ngModelChange)="getCity($event)"
                 formControlName="state" required>
-                <option *ngFor="let c of state" value='{{c["name"]}}'>{{c["name"]}}</option>
+                <option *ngFor="let c of state" value='{{c["name"]}}' [ngValue]="c">{{c["name"]}}</option>
             </select>
             <br><br>
         </div>

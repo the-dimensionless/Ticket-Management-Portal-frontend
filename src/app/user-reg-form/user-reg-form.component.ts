@@ -110,8 +110,10 @@ export class UserRegFormComponent implements OnInit {
   }
 
   getState(event) {
-    this.countrySelected = event;
-    let id = Number((<HTMLSelectElement>document.getElementById("country")).value);
+    this.countrySelected = event.name;
+    // let id = Number((<HTMLSelectElement>document.getElementById("country")).value);
+    let id = event.id;
+
     this.regionService.getStates(id).subscribe(
       data => {
         console.log("States loaded");
@@ -124,10 +126,8 @@ export class UserRegFormComponent implements OnInit {
   }
 
   getCity(event) {
-    console.log(event);
-
-    this.stateSelected = event;
-    let id = Number((<HTMLSelectElement>document.getElementById("state")).value);
+    this.stateSelected = event.name;
+    let id = event.id;
     this.regionService.getCities(id).subscribe(
       data => {
         console.log("Cities loaded");
