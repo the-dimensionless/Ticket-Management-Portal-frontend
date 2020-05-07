@@ -1,35 +1,43 @@
-<div class="container col-6" id="top-container">
-    <h3>Login</h3>
-    <div class="form-div">
-        <form #form="ngForm">
-            <div class="form-group">
-                <label for="username">Enter Username :</label>&nbsp;
-                <input id="username" name="username" class="form-control" placeholder="Enter Username" required
-                    #fieldOne="ngModel" ngModel [class.field-error]="form.submitted && fieldOne.invalid">
-                <br><br>
-                <div [hidden]="fieldOne.valid || fieldOne.untouched" class="alert alert-danger col-sm">
-                    Please enter a username
-                </div>
-                <br>
-                <label for="secondname">Enter Password :</label>&nbsp;&nbsp;
-                <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password"
-                    required #fieldTwo="ngModel" ngModel [class.field-error]="form.submitted && fieldTwo.invalid">
+<div class="bg-image">
+    <div class="bg-text">
+        <div class="container col-6" id="top-container">
+            <h3>Login</h3>
+            <div class="form-div">
+                <form #form="ngForm">
+                    <div class="form-group">
+                        <label for="username">Enter Username :</label>&nbsp;
+                        <input id="username" name="username" class="form-control" placeholder="Enter Username" required
+                            #fieldOne="ngModel" ngModel [class.field-error]="form.submitted && fieldOne.invalid">
+                        <br><br>
+                        <div [hidden]="fieldOne.valid || fieldOne.untouched" class="alert alert-danger col-sm">
+                            Please enter a username
+                        </div>
+                        <br>
+                        <label for="secondname">Enter Password :</label>&nbsp;&nbsp;
+                        <input type="password" id="password" name="password" class="form-control"
+                            placeholder="Enter Password" required #fieldTwo="ngModel" ngModel
+                            [class.field-error]="form.submitted && fieldTwo.invalid">
+                    </div>
+
+                    <div [hidden]="fieldTwo.valid || fieldTwo.untouched" class="alert alert-danger col-sm">
+                        Please enter a password
+                    </div>
+
+                    <div [hidden]="!postError" class="alert alert-danger">
+                        {{postErrorMessage}}
+                    </div>
+                    <button class="btn btn-primary" type="button" (click)="onSubmit(form)">Login</button> <br>
+                    <br>
+                    <p>Don't have a Username and Password ?</p>
+
+                    <a id="register" [routerLink]="'/user/registration'"><u><strong>Register Now!</strong></u></a>
+                    <br>
+                    <a id="forgot" [routerLink]="'/user/fp'"><u>
+                            <strong>Forgot Username/Password?</strong>
+                        </u></a>
+                </form>
             </div>
-
-            <div [hidden]="fieldTwo.valid || fieldTwo.untouched" class="alert alert-danger col-sm">
-                Please enter a password
-            </div>
-
-            <div [hidden]="!postError" class="alert alert-danger">
-                {{postErrorMessage}}
-            </div>
-            <button class="btn btn-primary" type="button" (click)="onSubmit(form)">Login</button> <br>
-
-            <p>Don't have a Username and Password ?</p>
-
-            <a id="register" [routerLink]="'/user/registration'"><u>Register Now!</u></a>
-            <br>
-            <a id="forgot" [routerLink]="'/user/fp'"><u>Forgot Username/Password?</u></a>
-        </form>
+        </div>
     </div>
+
 </div>

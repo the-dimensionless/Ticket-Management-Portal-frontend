@@ -11,7 +11,8 @@
     padding-top: 8%;
     padding-right: 10%;
     padding-bottom: 8%;
-    border: groove;
+    border: 3px solid white;
+    border-radius: 8px 8px 8px 8px;
 }
 
 .ng-invalid:not(form).ng-touched {
@@ -25,3 +26,34 @@
 .field-error {
     border: solid 1px red;
 }
+
+.bg-image {
+    /* The image used */
+    background-image: url("media/beach.png");
+    
+    
+    /* Add the blur effect */
+    /* filter: blur(8px);
+    -webkit-filter: blur(8px); */
+    
+    /* Full height */
+    height: 600px; 
+    
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    z-index: initial;
+    position: relative;
+
+   
+    
+  }
+
+  /* Position text in the middle of the page/image */
+.bg-text {
+    position: relative;
+    z-index: 100;
+    color: white;
+    font-size: medium;
+  }
