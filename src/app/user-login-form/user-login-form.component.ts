@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UsersService } from '../services/users.service';
 import { Router } from '@angular/router';
-import { AuthServicesService } from '../auth/auth-services.service';
+import { AuthServicesService, LoggedinUser } from '../auth/auth-services.service';
 
 @Component({
   selector: 'app-user-login-form',
@@ -28,31 +28,29 @@ export class UserLoginFormComponent implements OnInit {
     this.isformValid = form.valid;
 
     if (this.isformValid) {
-      let err = this.auth.login(form);
-      /* console.log("where ", err); */
-
-      this.postErrorMessage = err;
-      this.postError = true;
-    }
-
-    /* if (this.isformValid) {
-      this.userService.loginUser(form.value.username, form.value.password).subscribe(
+      this.auth.login(form).subscribe(
         result => {
-          console.log("login Success ", result);
-          console.log("Status Code ", result["status"]);
-          this.router.navigate(["./dashboard"]);
+          if (result["backResponse"]) {
+            this.postErrorMessage = "Invalid password";
+            this.postError = true;
+            return;
+          } else {
+            let resp = {} as LoggedinUser;
+            resp.access_token = result["jwtToken"];
+            resp.userName = result["fname"];
+            resp.emailId = result["email"];
+            resp.userId = result["userId"];
+
+            this.auth.manageSession(resp);
+            this.router.navigate(["user/dashboard"]);
+          }
+
         },
-        err => this.onHttpError(err)
+        err => {
+          this.postErrorMessage = "No such user exists";
+          this.postError = true;
+        }
       )
-    } else {
-      this.postErrorMessage = "Please enter the necessary Details";
-    } */
+    }
   }
-
-  onHttpError(error: any) {
-    console.log('error: ', error);
-    this.postError = true;
-    this.postErrorMessage = error["error"]["jwtToken"];
-  }
-
 }

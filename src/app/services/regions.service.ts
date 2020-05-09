@@ -20,4 +20,8 @@ export class RegionsService {
   getCities(stateId: number) {
     return this.http.get('server/region/getCityList/' + stateId);
   }
+
+  getAllCities() {
+    return this.http.get('server/region/getAllCities');
+  }
 }

@@ -3,6 +3,7 @@ import { UsersService } from 'src/app/services/users.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router'
 import { AuthServicesService } from 'src/app/auth/auth-services.service';
+import { RegionsService } from 'src/app/services/regions.service';
 
 @Component({
   selector: 'app-add-ticket',
@@ -19,12 +20,19 @@ export class AddTicketComponent implements OnInit {
   confirmation: boolean;
   values: any;
   finallySubmitted: boolean;
+  cities = [];
 
-  constructor(private userService: UsersService, private auth: AuthServicesService, private route: ActivatedRoute) {
+  constructor(private userService: UsersService, private regionService: RegionsService, private auth: AuthServicesService, private route: ActivatedRoute) {
     this.viewEdit = false;
     this.valid = false;
     this.confirmation = false;
     this.finallySubmitted = true;
+
+    /*  this.regionService.getAllCities().subscribe(
+       data => {
+         this.cities = Object.values(data);
+       }
+     ) */
   }
 
   ngOnInit(): void {

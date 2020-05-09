@@ -139,10 +139,11 @@ export class UserRegFormComponent implements OnInit {
       },
       error => {
         if (error["statusText"] == "Conflict") {
-          this.validMessage = "Username already exists";
+          this.validMessage = "Username/Email id already exists";
         } else {
           this.validMessage = "Uh-oh.... It seems there is some error";
         }
+        this.editable = false;
         window.scrollTo(0, 0);
         console.log(error);
         return;

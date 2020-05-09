@@ -28,9 +28,7 @@
         <div class="form-select">
             <label for="select">Travel City</label>
             <select class="form-control" formControlName="tocity" id="city" required>
-                <option>Dhanbad</option>
-                <option>Ranchi</option>
-                <option>Jamshedpur</option>
+                <option *ngFor="let city of cities">{{city.name}}</option>
             </select>
         </div>
         <br>
