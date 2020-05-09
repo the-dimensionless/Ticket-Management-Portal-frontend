@@ -20,44 +20,38 @@ export class AddTicketComponent implements OnInit {
   confirmation: boolean;
   values: any;
   finallySubmitted: boolean;
-  cities = [];
 
   constructor(private userService: UsersService, private regionService: RegionsService, private auth: AuthServicesService, private route: ActivatedRoute) {
     this.viewEdit = false;
     this.valid = false;
     this.confirmation = false;
     this.finallySubmitted = true;
-
-    /*  this.regionService.getAllCities().subscribe(
-       data => {
-         this.cities = Object.values(data);
-       }
-     ) */
   }
 
   ngOnInit(): void {
     this.id = JSON.parse(sessionStorage.getItem("user"))["userId"];
 
     this.ticketForm = new FormGroup({
-      requestType: new FormControl('', Validators.required),
-      priority: new FormControl('', Validators.required),
+      requestType: new FormControl(''),
+      priority: new FormControl(''),
 
-      tocity: new FormControl('', Validators.required),
+      tocity: new FormControl(''),
 
-      fromcity: new FormControl('', Validators.required),
-      startDate: new FormControl('', Validators.required),
-      endDate: new FormControl('', Validators.required),
+      fromcity: new FormControl(''),
+      startDate: new FormControl(''),
+      endDate: new FormControl(''),
 
-      passport: new FormControl('', Validators.required),
-      project: new FormControl(),
+      passport: new FormControl(''),
+      project: new FormControl(''),
 
-      expense: new FormControl('', Validators.required),
-      approver: new FormControl('', Validators.required),
-      duration: new FormControl('', Validators.required),
+      expense: new FormControl(''),
+      approver: new FormControl(''),
+      duration: new FormControl(''),
 
-      upperBound: new FormControl('', Validators.required),
+      upperBound: new FormControl(''),
       additionalInformation: new FormControl('', Validators.required)
     });
+
   }
 
   printView(): void {
@@ -65,18 +59,14 @@ export class AddTicketComponent implements OnInit {
   }
 
   showView(form) {
-    this.onSuccess(form);
-    /* if (form.valid) {
-      let sampleTicket = {
-      }
-      console.log(sampleTicket);
-      this.userService.addUserTicket(this.id, sampleTicket);
-      this.viewEdit = true;
+    if (this.isFormValid(form)) {
+      this.onSuccess(form);
     } else {
-      this.msg = "There seems to be some error with the form";
+      console.log("INvalid", form);
+      this.msg = "Please fill in all the details correctly";
+      window.scrollTo(0, 0);
       this.valid = true;
-    } */
-
+    }
   }
 
   editView() {
@@ -119,7 +109,6 @@ export class AddTicketComponent implements OnInit {
       "additionalDetails": form.additionalInformation,
       /* "dateCreated": new Date().toISOString().substring(0, 10) */
     }
-    console.log(sampleTicket);
     this.userService.addUserTicket(this.id, sampleTicket).subscribe(
       data => {
         console.log("success");
@@ -129,6 +118,15 @@ export class AddTicketComponent implements OnInit {
       },
       err => console.log(err)
     );
-    console.log("here");
   }
+
+  isFormValid(form): boolean {
+    if (form.requestType == '' || form.priority == '' || form.fromcity == '' || form.tocity == '' || form.passport == '' ||
+      form.expense == '' || form.project == '' || form.additionalInformation == '' || form.approver == '' || form.duration == '') {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
 }

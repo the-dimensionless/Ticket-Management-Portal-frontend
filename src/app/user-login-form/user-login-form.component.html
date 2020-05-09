@@ -7,7 +7,8 @@
                     <div class="form-group">
                         <label for="username">Enter Username :</label>&nbsp;
                         <input id="username" name="username" class="form-control" placeholder="Enter Username" required
-                            #fieldOne="ngModel" ngModel [class.field-error]="form.submitted && fieldOne.invalid">
+                            pattern=".+@nagarro.com" #fieldOne="ngModel" ngModel
+                            [class.field-error]="form.submitted && fieldOne.invalid">
                         <br><br>
                         <div [hidden]="fieldOne.valid || fieldOne.untouched" class="alert alert-danger col-sm">
                             Please enter a valid username

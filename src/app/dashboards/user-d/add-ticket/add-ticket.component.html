@@ -4,6 +4,7 @@
     <div [hidden]="!this.valid">
         <button type="button" class="btn btn-success" disabled>{{msg}}</button>
     </div>
+    <br>
     <form [formGroup]="ticketForm" (ngSubmit)="showView(ticketForm.value)" novalidate>
         <div class="form-select">
             <label for="Request">Request Type</label>
@@ -26,18 +27,46 @@
         <br>
         <br>
         <div class="form-select">
-            <label for="select">Travel City</label>
+            <label for="select">Destination Travel City</label>
             <select class="form-control" formControlName="tocity" id="city" required>
-                <option *ngFor="let city of cities">{{city.name}}</option>
+                <option value="Tokyo">Tokyo</option>
+                <option value="Berlin">Berlin</option>
+                <option value="Frankfurt">Frankfurt</option>
+                <option value="London">London</option>
+                <option value="Dubai">Dubai</option>
+                <option value="Paris">Paris</option>
+                <option value="Munich">Munich</option>
+                <option value="Zurich">Zurich</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="New York">New York</option>
+                <option value="Rome">Rome</option>
+                <option value="Jakarta">Jakarta</option>
+                <option value="Canberra">Canberra</option>
+                <option value="Johannesburg">Johannesburg</option>
+                <option value="Chennai">Chennai</option>
             </select>
         </div>
         <br>
         <div class="form-select">
-            <label for="select">Travel City</label>
+            <label for="select">Departure City</label>
             <select class="form-control" formControlName="fromcity" id="city" required>
-                <option>Dhanbad</option>
-                <option>Ranchi</option>
-                <option>Jamshedpur</option>
+                <option value="Tokyo">Tokyo</option>
+                <option value="Berlin">Berlin</option>
+                <option value="Frankfurt">Frankfurt</option>
+                <option value="London">London</option>
+                <option value="Dubai">Dubai</option>
+                <option value="Paris">Paris</option>
+                <option value="Munich">Munich</option>
+                <option value="Zurich">Zurich</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="New York">New York</option>
+                <option value="Rome">Rome</option>
+                <option value="Jakarta">Jakarta</option>
+                <option value="Canberra">Canberra</option>
+                <option value="Johannesburg">Johannesburg</option>
+                <option value="Chennai">Chennai</option>
             </select>
         </div>
         <br>
