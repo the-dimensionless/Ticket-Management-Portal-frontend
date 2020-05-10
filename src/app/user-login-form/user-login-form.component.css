@@ -57,3 +57,13 @@
     color: white;
     font-size: medium;
   }
+
+  h1 {
+    color:white;
+    padding-left: 31%;
+}
+
+.navbar {
+    display: block;
+    *display:inline; /* Internet Explorer 7 compatibility */
+}

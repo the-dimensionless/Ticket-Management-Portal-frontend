@@ -1,3 +1,14 @@
+<nav class="navbar navbar-light bg-dark">
+    <div class="container">
+        <h1>Welcome to Nagarro Travel</h1>
+        <div>
+            <button type="button" class="btn btn-danger" (click)="logout()">Logout</button>
+        </div>
+    </div>
+
+</nav>
+
+
 <div class="container col-8" *ngIf="!confirmation"><br>
     <h2>Add a new Ticket Request</h2><br>
     <hr>
@@ -72,13 +83,14 @@
         <br>
         <div class="form-group">
             <label for="select">Travel Start Date</label>
-            <input type="date" class="form-control" formControlName="startDate" placeholder="enter start date" required>
+            <input type="date" class="form-control" formControlName="startDate" id="startDate" #startD
+                min="{{date.toISOString().split('T')[0]}}" placeholder="enter start date" required>
         </div>
         <br>
         <div class="form-group">
             <label for="select">Travel End Date</label>
-            <input type="date" id="endDate" class="form-control" formControlName="endDate" placeholder="enter end date"
-                required>
+            <input type="date" id="endDate" class="form-control" formControlName="endDate" (click)="getDate()"
+                min="{{endDate.toISOString().split('T')[0]}}" placeholder="enter end date" required>
         </div>
         <br>
         <div class="form-group">
@@ -156,7 +168,7 @@
         <hr>
         <h5>The admin team will process your ticket shortly after you click on Submit button below!</h5>
         <hr>
-    </div>
+    </div><br>
     <div [hidden]="!valid">
         <button type="button" class="btn btn-success" disabled>{{msg}}</button>
     </div>

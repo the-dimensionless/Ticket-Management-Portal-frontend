@@ -1,0 +1,9 @@
+h1 {
+    color:white;
+    padding-left: 27%;
+}
+
+.navbar {
+    display: block;
+    *display:inline; /* Internet Explorer 7 compatibility */
+}

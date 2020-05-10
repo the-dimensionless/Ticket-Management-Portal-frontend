@@ -1,10 +1,11 @@
 <nav class="navbar navbar-light fixed-top bg-dark">
     <div class="container">
         <h1>Welcome to Nagarro Travel</h1>
-        <button type="button" id="home" class="btn btn-info" (click)="base()">Dashboard</button>
-    </div>
-    <div>
-        <button type="button" class="btn btn-danger" (click)="logout()">Logout</button>
+
+        <div>
+            <button type="button" id="home" class="btn btn-info" (click)="base()">Dashboard</button>&nbsp;
+            <button type="button" class="btn btn-danger" (click)="logout()">Logout</button>
+        </div>
     </div>
 </nav><br>
 
@@ -19,7 +20,7 @@
     <div>
         <ng2-smart-table [settings]="settings" [source]="data" (userRowSelect)="handle(this.$event)"></ng2-smart-table>
     </div>
-</div>
+</div><br>
 
 <div *ngIf="this.viewingTickets">
     <div class="jumbotron jumbotron-fluid">
@@ -56,13 +57,14 @@
         <h3>Add Comments</h3>
         <div class="container">
             <form [formGroup]="uploadForm" (ngSubmit)="submitComment()">
-                <div class="form-group form-control">
-                    <label>Comment:</label>&nbsp;
-                    <input type="text" id="comments" name="comment" #comment required>
-                </div>
+                <br>
+                <label>Comment:</label>&nbsp;
+                <input type="text" class="form-control" id="comments" placeholder="Enter comments . . ." name="comment"
+                    #comment required>
+                <br>
                 <div class="form-group form-control">
                     <label>Upload a document:</label>&nbsp;
-                    <input type="file" name="file" (change)="onFileSelect($event)" #file>
+                    <input type="file" name="file" (change)="onFileSelect($event)" #file id="file">
                 </div>
                 <div class="form-group form-control">
                     <label>Change status:</label>&nbsp;

@@ -3,3 +3,12 @@
 *{
     font-family: 'Ubuntu', sans-serif;
 }
+
+h1 {
+    color:white;
+    padding-left: 31%;
+}
+
+.navbar {
+    display: block;
+}

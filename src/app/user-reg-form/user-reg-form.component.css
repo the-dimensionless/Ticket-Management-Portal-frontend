@@ -21,3 +21,12 @@
 {
   border:1px solid #f00;
 }
+h1 {
+  color:white;
+  padding-left: 31%;
+}
+
+.navbar {
+  display: block;
+  *display:inline; /* Internet Explorer 7 compatibility */
+}

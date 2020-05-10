@@ -23,4 +23,11 @@
     padding-left: 2%;
     padding-right: 2%;
 }
+.navbar {
+    display: block;
+}
+h1 {
+    color:white;
+    padding-left: 31%;
+}
 

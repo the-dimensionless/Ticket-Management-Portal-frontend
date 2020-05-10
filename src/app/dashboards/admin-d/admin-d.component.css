@@ -2,3 +2,11 @@ h1 {
     color:white;
     padding-left: 26%;
 }
+
+.navbar {
+    display: block;
+}
+
+#file {
+    padding-bottom: 3%;
+}

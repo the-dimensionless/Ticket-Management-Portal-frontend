@@ -20,12 +20,17 @@ export class AddTicketComponent implements OnInit {
   confirmation: boolean;
   values: any;
   finallySubmitted: boolean;
+  date: Date;
+  endDate: Date;
 
   constructor(private userService: UsersService, private regionService: RegionsService, private auth: AuthServicesService, private route: ActivatedRoute) {
     this.viewEdit = false;
     this.valid = false;
     this.confirmation = false;
     this.finallySubmitted = true;
+
+    this.endDate = new Date(new Date(new Date().getTime() + 1000 * 60 * 60 * 24));
+    this.date = new Date();
   }
 
   ngOnInit(): void {
@@ -127,6 +132,11 @@ export class AddTicketComponent implements OnInit {
     } else {
       return true;
     }
+  }
+
+  getDate() {
+    let d = (<HTMLInputElement>document.getElementById("startDate")).value;
+    this.endDate = new Date((new Date(d).getTime() + 1000 * 60 * 60 * 24));
   }
 
 }

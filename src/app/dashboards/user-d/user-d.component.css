@@ -1,9 +1,10 @@
 .sidenav {
     height: 100%;
     width: 170px;
+    /* position: fixed; */
     position: fixed;
     z-index: 1;
-    top: 0;
+    top: 00;
     left: 0;
     background-color: #111;
     
@@ -22,6 +23,8 @@
     color: #f1f1f1;
   }
 
+
+
   .main {
     margin-left: 160px; /* Same as the width of the sidenav */
     font-size: 23px; /* Increased text to enable scrolling */
@@ -37,4 +40,12 @@
   }
   p{
     padding-left: 22%;
+  }
+
+  .Submitted {
+    color: rgb(206, 204, 102);
+  }
+
+  .In.Process {
+    color: green;
   }
