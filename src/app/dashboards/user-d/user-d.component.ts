@@ -75,7 +75,10 @@ export class UserDComponent implements OnInit {
 
     let country = (<HTMLInputElement>document.getElementById('corona-target')).value;
     this.target = country;
-    let url = "https://api.covid19api.com/live/country/" + country + "/status/confirmed/date/2020-03-21T13:13:30Z";
+    // let url = "https://api.covid19api.com/live/country/" + country + "/status/confirmed/date/2020-03-21T13:13:30Z";
+    let d = new Date();
+    d.setDate(d.getDate() - 30);
+    let url = "https://api.covid19api.com/live/country/" + country + "/status/confirmed/date/" + d.toISOString();
 
     this.userService.getCoronaData(url).subscribe(
       data => {
