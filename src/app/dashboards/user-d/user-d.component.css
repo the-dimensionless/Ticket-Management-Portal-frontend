@@ -46,6 +46,14 @@
     color: rgb(206, 204, 102);
   }
 
+  .Resubmitted {
+    color: orange;
+  }
+
   .In.Process {
-    color: green;
+    color: rgb(129, 209, 129);
+  }
+
+  .Done {
+    color:green;
   }

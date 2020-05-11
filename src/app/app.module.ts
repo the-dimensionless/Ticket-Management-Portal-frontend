@@ -49,7 +49,7 @@ import { Ng2SmartTableModule, LocalDataSource } from 'ng2-smart-table';
     ReactiveFormsModule,
     ChartsModule,
     NgxPaginationModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
   ],
   providers: [UsersService, RegionsService, AuthGuardService, AuthServicesService, AdminService,
     AuthAdminServicesService, AuthAdminService,

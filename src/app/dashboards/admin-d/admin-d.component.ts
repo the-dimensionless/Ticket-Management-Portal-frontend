@@ -14,6 +14,8 @@ export class AdminDComponent implements OnInit {
   data: any;
   uploadForm: FormGroup;
   viewingTickets: boolean;
+  msg: string;
+  show: boolean;
   ticket: any;
   settings = {
     actions: {
@@ -54,6 +56,7 @@ export class AdminDComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: Router, private AdminAuthServicesService: AuthAdminServicesService) {
     this.data = JSON.parse(sessionStorage.getItem('admin'));
+    this.show = false;
 
     this.adminService.getTicketsAll(this.data).subscribe(
       loaded => {
@@ -102,18 +105,20 @@ export class AdminDComponent implements OnInit {
 
     this.adminService.addData(formData, this.ticket["ticketId"]).subscribe(
       data => {
-        console.log("posted ");
+
       },
       err => {
         console.log("error", err);
       }
     );
 
+    this.msg = "Details uploaded successfully";
+    this.show = true;
     window.scrollTo({ top: 0, behavior: 'smooth' });
     let status = ((<HTMLInputElement>document.getElementById('status')).value);
     this.adminService.updateTicket(status, this.ticket["ticketId"]).subscribe(
       data => {
-        console.log("updated");
+
       },
       err => {
         console.log("error ", err);

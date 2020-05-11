@@ -105,4 +105,5 @@ export class UserDComponent implements OnInit {
   view(ticket) {
 
   }
+
 }

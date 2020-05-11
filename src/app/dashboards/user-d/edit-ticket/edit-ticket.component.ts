@@ -63,7 +63,7 @@ export class EditTicketComponent implements OnInit {
       "processedBy": (<HTMLSelectElement>document.getElementById('processed')).value,
 
       "dateCreated": (<HTMLSelectElement>document.getElementById('dateCreated')).value,
-      "status": "ReSubmitted",
+      "status": "Resubmitted",
       "requestType": (<HTMLSelectElement>document.getElementById('requestType')).value,
       "priority": (<HTMLSelectElement>document.getElementById('priority')).value,
       "fromLocation": (<HTMLSelectElement>document.getElementById('fromcity')).value,
