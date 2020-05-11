@@ -115,10 +115,10 @@ export class AdminDComponent implements OnInit {
     this.msg = "Details uploaded successfully";
     this.show = true;
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    let i = JSON.parse(sessionStorage.getItem('admin'))["adminId"];
+    let i = JSON.parse(sessionStorage.getItem('admin'))["email"];
     console.log(i);
     let status = ((<HTMLInputElement>document.getElementById('status')).value);
-    this.adminService.updateTicket(status, this.ticket["ticketId"]).subscribe(
+    this.adminService.updateTicket(status, i, this.ticket["ticketId"]).subscribe(
       data => {
 
       },

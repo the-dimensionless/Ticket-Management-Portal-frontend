@@ -23,13 +23,13 @@ export class AdminService {
     return this.http.get("server/admin/" + id);
   }
 
-  updateTicket(status, id) {
+  updateTicket(status, i, id) {
     let data = JSON.parse(sessionStorage.getItem('admin'));
     let body = {
       "username": data["email"],
       "pass": data["password"]
     }
-    return this.http.post("server/admin/updateTicket/" + status + "/" + id, body, httpOptions);
+    return this.http.post("server/admin/updateTicket/" + status + "/" + id + "/" + i, body, httpOptions);
   }
 
   login(form) {
