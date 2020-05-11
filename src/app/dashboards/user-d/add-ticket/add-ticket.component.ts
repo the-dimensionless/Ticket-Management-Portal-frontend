@@ -109,7 +109,7 @@ export class AddTicketComponent implements OnInit {
       "expenseBorneBy": form.expense,
       "travelApproverName": form.approver,
       "durationOfTravel": form.duration,
-      "upperBoundAmount": form.upperBound,
+      "upperBoundOnAmount": form.upperBound,
       "project": form.project,
       "additionalDetails": form.additionalInformation,
       /* "dateCreated": new Date().toISOString().substring(0, 10) */
