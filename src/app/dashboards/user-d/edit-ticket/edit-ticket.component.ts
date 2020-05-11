@@ -50,7 +50,13 @@ export class EditTicketComponent implements OnInit {
   }
 
   makeEdits() {
-    this.editable = false;
+    let stat = (<HTMLInputElement>document.getElementById('status')).value;
+    if (stat == "In Process" || stat == "Done") {
+
+    } else {
+      this.editable = false;
+    }
+
   }
 
   cancel() {
