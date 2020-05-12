@@ -32,7 +32,20 @@ export class AdminDComponent implements OnInit {
       },
       priority: {
         title: 'Priority',
-        sort: true
+        sort: true,
+        compareFunction: (direction: any, a: any, b: any) => {
+          if (a == "Immediate") {
+            return -1 * direction;
+          } else if (b == "Immediate") {
+            return 1 * direction;
+          } else if (a == "Urgent") {
+            return -1 * direction;
+          } else if (b == "Urgent") {
+            return 1 * direction;
+          } else {
+            return 0;
+          }
+        }
       },
       project: {
         title: 'Project Name'
@@ -131,5 +144,4 @@ export class AdminDComponent implements OnInit {
   base() {
     this.viewingTickets = false;
   }
-
 }
