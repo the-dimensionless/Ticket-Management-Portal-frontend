@@ -64,10 +64,12 @@ export class AddTicketComponent implements OnInit {
   }
 
   showView(form) {
+    this.msg = "";
+    this.valid = false;
     if (this.isFormValid(form)) {
       this.onSuccess(form);
     } else {
-      console.log("INvalid", form);
+      console.log("Invalid");
       this.msg = "Please fill in all the details correctly";
       window.scrollTo(0, 0);
       this.valid = true;
