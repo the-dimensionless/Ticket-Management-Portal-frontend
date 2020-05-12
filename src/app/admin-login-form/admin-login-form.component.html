@@ -9,7 +9,7 @@
         <form class="form" #form="ngForm">
             <div class="input">
                 <label for="username">Enter Username</label>
-                <input type="text" class="form-control" id="username" name="username"
+                <input type="text" class="form-control" id="username" name="username" pattern=".+@nagarro.com"
                     [class.field-error]="form.submitted && fieldOne.invalid" #fieldOne="ngModel" ngModel required>
             </div>
             <br>
