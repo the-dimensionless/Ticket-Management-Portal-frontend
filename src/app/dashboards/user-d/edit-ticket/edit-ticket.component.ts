@@ -64,40 +64,46 @@ export class EditTicketComponent implements OnInit {
   }
 
   update() {
-    let sampleTicket = {
-      "ticketId": (<HTMLInputElement>document.getElementById('ticketId')).value,
-      "processedBy": (<HTMLSelectElement>document.getElementById('processed')).value,
+    let stats = (<HTMLSelectElement>document.getElementById('status')).value;
+    if (stats == "In Process" || stats == "Done") {
+      this.valid = true;
+      this.msg = "Sorry! Cannot update details since Admin is already on it!"
+      window.scrollTo(0, 0);
 
-      "dateCreated": (<HTMLSelectElement>document.getElementById('dateCreated')).value,
-      "status": "Resubmitted",
-      "requestType": (<HTMLSelectElement>document.getElementById('requestType')).value,
-      "priority": (<HTMLSelectElement>document.getElementById('priority')).value,
-      "fromLocation": (<HTMLSelectElement>document.getElementById('fromcity')).value,
-      "toLocation": (<HTMLSelectElement>document.getElementById('tocity')).value,
-      "startDate": (<HTMLInputElement>document.getElementById('startDate')).value,
-      "endDate": (<HTMLInputElement>document.getElementById('endDate')).value,
-      "passportNumber": (<HTMLSelectElement>document.getElementById('passport')).value,
-      "expenseBorneBy": (<HTMLSelectElement>document.getElementById('expense')).value,
-      "travelApproverName": (<HTMLInputElement>document.getElementById('approver')).value,
-      "durationOfTravel": (<HTMLInputElement>document.getElementById('duration')).value,
-      "upperBoundAmount": (<HTMLInputElement>document.getElementById('upperBound')).value,
-      "additionalDetails": (<HTMLInputElement>document.getElementById('additionalInformation')).value,
-      "project": (<HTMLInputElement>document.getElementById('project')).value
-      /* "dateCreated": new Date().toISOString().substring(0, 10) */
-    }
+    } else {
+      let sampleTicket = {
+        "ticketId": (<HTMLInputElement>document.getElementById('ticketId')).value,
+        "processedBy": (<HTMLSelectElement>document.getElementById('processed')).value,
 
-    console.log(sampleTicket);
+        "dateCreated": (<HTMLSelectElement>document.getElementById('dateCreated')).value,
+        "status": "Resubmitted",
+        "requestType": (<HTMLSelectElement>document.getElementById('requestType')).value,
+        "priority": (<HTMLSelectElement>document.getElementById('priority')).value,
+        "fromLocation": (<HTMLSelectElement>document.getElementById('fromcity')).value,
+        "toLocation": (<HTMLSelectElement>document.getElementById('tocity')).value,
+        "startDate": (<HTMLInputElement>document.getElementById('startDate')).value,
+        "endDate": (<HTMLInputElement>document.getElementById('endDate')).value,
+        "passportNumber": (<HTMLSelectElement>document.getElementById('passport')).value,
+        "expenseBorneBy": (<HTMLSelectElement>document.getElementById('expense')).value,
+        "travelApproverName": (<HTMLInputElement>document.getElementById('approver')).value,
+        "durationOfTravel": (<HTMLInputElement>document.getElementById('duration')).value,
+        "upperBoundOnAmount": (<HTMLInputElement>document.getElementById('upperBound')).value,
+        "additionalDetails": (<HTMLInputElement>document.getElementById('additionalInformation')).value,
+        "project": (<HTMLInputElement>document.getElementById('project')).value
+        /* "dateCreated": new Date().toISOString().substring(0, 10) */
+      }
 
-    if (!this.editable) {
-      this.userService.updateUserTicket(this.user_id, this.ticket_id, sampleTicket).subscribe(
-        data => {
-          console.log("Updated Successfully");
-          this.valid = true;
-          this.msg = "Well, your details have been updated!"
-          window.scrollTo(0, 0);
-        },
-        err => console.log(err)
-      );
+      if (!this.editable) {
+        this.userService.updateUserTicket(this.user_id, this.ticket_id, sampleTicket).subscribe(
+          data => {
+            console.log("Updated Successfully");
+            this.valid = true;
+            this.msg = "Well, your details have been updated!"
+            window.scrollTo(0, 0);
+          },
+          err => console.log(err)
+        );
+      }
     }
   }
 
